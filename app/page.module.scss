@@ -1,0 +1,24 @@
+@import '../styles/mixins/responsive';
+
+.home {
+	height: 100vh;
+	@include mobile {
+		height: auto;
+	}
+	&__mobile {
+		display: none;
+		@include mobile {
+			display: initial;
+		}
+	}
+	&__desktop {
+		display: initial;
+		@include mobile {
+			display: none;
+		}
+		&__swiper {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

@@ -1,0 +1,104 @@
+@import '../../styles/mixins/responsive';
+
+.footer {
+	background: #121212;
+	color: #fff;
+	&__content {
+		width: 100%;
+		max-width: 1162px;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		@include mobile {
+			padding: 0 25px;
+			padding-bottom: 70px;
+		}
+		&__nav {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 1rem;
+			padding-top: 38px;
+			padding-bottom: 33px;
+			border-bottom: 1px solid #d9d9d9;
+			&__list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: flex;
+				gap: 20px;
+				@include mobile {
+					flex-direction: column;
+					gap: 5px;
+				}
+				&__item {
+					color: #fff;
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: normal;
+					@include mobile {
+						display: inline-block;
+						width: 100%;
+						text-align: center;
+						font-size: 13px;
+					}
+				}
+			}
+		}
+		&__info {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 125px;
+			width: 100%;
+			border-bottom: 1px solid #d9d9d9;
+			padding-top: 40px;
+			padding-bottom: 24px;
+			font-size: 20px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			@include mobile {
+				flex-direction: column;
+				gap: 12px;
+				text-align: center;
+				font-size: 13px;
+			}
+			&__list {
+				display: grid;
+				gap: 5px;
+				height: max-content;
+				@include mobile {
+					gap: 12px;
+					list-style: none;
+				}
+				li::marker {
+					font-size: 1.5rem;
+				}
+			}
+		}
+		&__text {
+			padding-top: 12px;
+			padding-bottom: 52px;
+			max-width: 952px;
+			margin: 0 auto;
+			text-align: center;
+			font-size: 11px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			&__list {
+				&__item {
+					list-style: none;
+				}
+			}
+		}
+		&__logo {
+			width: max-content;
+			margin: 0 auto;
+		}
+	}
+}
