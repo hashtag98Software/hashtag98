@@ -3,3 +3,8 @@
 		@content;
 	}
 }
+@mixin desktop-large-max-width {
+	@media only screen and (min-width: 1440px) {
+		@content;
+	}
+}
