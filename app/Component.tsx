@@ -11,10 +11,12 @@ import Space from 'components/home/Space/Space'
 import RoomTypes from 'components/home/RoomTypes/RoomTypes'
 import Experiences from 'components/home/Experiences/Experiences'
 import { useEffect } from 'react'
+import FloatingMenu from 'components/home/FloatingMenu/FloatingMenu'
 
 const Component = () => {
 	return (
 		<main className={s.home}>
+			<FloatingMenu />
 			<div
 				dangerouslySetInnerHTML={{
 					__html:

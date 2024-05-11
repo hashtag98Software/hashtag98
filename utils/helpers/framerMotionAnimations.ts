@@ -25,3 +25,18 @@ export const fade_in: Variants = {
 		},
 	},
 }
+
+export const menuItemsAnimation = (i: number) => ({
+	offscreen: {
+		opacity: 0,
+		translateX: -100,
+	},
+	onscreen: {
+		opacity: 1,
+		translateX: 0,
+		transition: {
+			type: 'spring',
+			duration: 0.2 * (i + 1),
+		},
+	},
+})

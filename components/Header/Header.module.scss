@@ -1,23 +1,6 @@
 @import '../../styles/mixins/responsive';
 @import '../../styles/mixins/button';
-
-@mixin link-hover {
-	&::before {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		height: 2px;
-		width: 0%;
-		background: #fff;
-		transition: 0.5s;
-	}
-	&:hover {
-		&::before {
-			width: 100%;
-		}
-	}
-}
+@import '../../styles/mixins/link-hover';
 
 .header {
 	display: grid;
@@ -29,11 +12,12 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 2;
+	z-index: 3;
 	@include mobile {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding: 28px;
 	}
 	&__menu {
 		position: absolute;
@@ -117,6 +101,12 @@
 	}
 	&__logo {
 		justify-self: center;
+		&__img {
+			width: 106px;
+			@include mobile {
+				width: 72px;
+			}
+		}
 	}
 	&__nav {
 		justify-self: end;

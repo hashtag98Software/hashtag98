@@ -3,7 +3,10 @@ import Link from 'next/link'
 import s from './Header.module.scss'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { animationOnScreenContainer } from 'utils/helpers/framerMotionAnimations'
+import {
+	animationOnScreenContainer,
+	menuItemsAnimation,
+} from 'utils/helpers/framerMotionAnimations'
 
 const Header = () => {
 	const menuItems = [
@@ -28,22 +31,9 @@ const Header = () => {
 					<ul className={s.header__menu__nav__list}>
 						{menuItems.map((item, i) => (
 							<motion.li
-								key={item.link}
+								key={item.label}
 								className={s.header__menu__nav__list__item}
-								variants={{
-									offscreen: {
-										opacity: 0,
-										translateX: -100,
-									},
-									onscreen: {
-										opacity: 1,
-										translateX: 0,
-										transition: {
-											type: 'spring',
-											duration: 0.4 * (i + 1),
-										},
-									},
-								}}
+								variants={menuItemsAnimation(i)}
 								{...animationOnScreenContainer}
 							>
 								<Link href={item.link}>{item.label}</Link>
@@ -93,7 +83,11 @@ const Header = () => {
 				</Link>
 			</div>
 			<Link className={s.header__logo} href="/" aria-label="Hashtag98 Logo">
-				<img src="/img/logo.png" alt="Hashtag98 Logo" width={106} height={57} />
+				<img
+					className={s.header__logo__img}
+					src="/img/logo.png"
+					alt="Hashtag98 Logo"
+				/>
 			</Link>
 			<nav className={s.header__nav}>
 				<ul className={s.header__nav__list}>

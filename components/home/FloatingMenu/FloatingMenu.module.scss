@@ -1,0 +1,60 @@
+@import '../../../styles/mixins/link-hover';
+@import '../../../styles/mixins/responsive';
+
+.floating_menu {
+	position: fixed;
+	left: 84px;
+	bottom: 133px;
+	z-index: 2;
+	$button-height: 51px;
+	@include mobile {
+		display: none;
+	}
+	&__button {
+		width: var(--floating-menu-width);
+		height: $button-height;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		cursor: pointer;
+		color: #fff;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: normal;
+		border: none;
+		border-top-left-radius: 30px;
+		border-bottom-left-radius: 30px;
+		background: rgba(18, 18, 18, 0.69);
+		border: 2px solid #d9d9d9;
+		&__arrow {
+			transition: 0.5s;
+			&.active {
+				transform: rotate(180deg);
+			}
+		}
+	}
+	&__content {
+		padding: 74px 26px;
+		background: #151515;
+		border-radius: 60px;
+		position: absolute;
+		bottom: $button-height + 16px;
+		overflow: hidden;
+		&__list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 22px;
+			&__item {
+				color: #fff;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: normal;
+				@include link-hover;
+			}
+		}
+	}
+}
