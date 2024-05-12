@@ -1,3 +1,4 @@
+@import '../../../styles/mixins/responsive';
 .section_footer {
 	display: grid;
 	grid-template-rows: 1fr auto;
@@ -9,5 +10,8 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
+		@include mobile {
+			min-height: 261px;
+		}
 	}
 }
