@@ -5,15 +5,23 @@ import {
 	animationOnScreenContainer,
 	fade_in,
 } from 'utils/helpers/framerMotionAnimations'
+import { HotelPlace } from 'utils/types/graphql/graphql'
+import {
+	useContentfulInspectorMode,
+	useContentfulLiveUpdates,
+} from '@contentful/live-preview/react'
 
 type Props = {
-	titleTop: string
 	titleBottom: string
 	description: string
 	link: string
 	img: string
+	data: HotelPlace
 }
-const Space = ({ titleTop, titleBottom, description, link, img }: Props) => {
+const Space = ({ titleBottom, description, link, img, data }: Props) => {
+	const updatedData = useContentfulLiveUpdates(data)
+	const inspectorProps = useContentfulInspectorMode({ entryId: data.sys.id })
+
 	return (
 		<section className={s.space}>
 			<motion.div
@@ -39,7 +47,14 @@ const Space = ({ titleTop, titleBottom, description, link, img }: Props) => {
 				{...animationOnScreenContainer}
 			>
 				<h2 className={s.space__content__title}>
-					<span>{titleTop}</span>
+					<span
+						{...inspectorProps({
+							fieldId: 'titleTop',
+							manuallyTagged: undefined,
+						})}
+					>
+						{updatedData.titleTop}
+					</span>
 					<span className={s.space__content__title__bottom}>{titleBottom}</span>
 				</h2>
 				<p className={s.space__content__description}>{description}</p>

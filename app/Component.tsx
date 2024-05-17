@@ -10,10 +10,12 @@ import SectionFooter from 'components/home/SectionFooter/SectionFooter'
 import Space from 'components/home/Space/Space'
 import RoomTypes from 'components/home/RoomTypes/RoomTypes'
 import Experiences from 'components/home/Experiences/Experiences'
-import { useEffect } from 'react'
 import FloatingMenu from 'components/home/FloatingMenu/FloatingMenu'
+import { Home } from 'utils/types/graphql/graphql'
 
-const Component = () => {
+const Component = ({ data }: { data: Home }) => {
+	const { spacesCollection } = data
+
 	return (
 		<main className={s.home}>
 			<FloatingMenu />
@@ -35,7 +37,7 @@ const Component = () => {
 					modules={[Autoplay, Pagination]}
 					className={s.home__mobile__swiper}
 				>
-					<SwiperSlide>
+					{/* <SwiperSlide>
 						<Space
 							titleTop="Restaurante"
 							titleBottom="Amena"
@@ -52,7 +54,7 @@ const Component = () => {
 							link="/"
 							img="/delete/rooftop.jpg"
 						/>
-					</SwiperSlide>
+					</SwiperSlide> */}
 				</Swiper>
 				<Experiences />
 				<Map />
@@ -77,16 +79,21 @@ const Component = () => {
 					<SwiperSlide>
 						<RoomTypes />
 					</SwiperSlide>
-					<SwiperSlide>
-						<Space
-							titleTop="Restaurante"
-							titleBottom="Amena"
-							description="Sumérgete en una experiencia gastronómica única en Amena, un rincón culinario que fusiona la tradición mediterránea con el vibrante sabor colombiano"
-							link="/"
-							img="/delete/amena.jpg"
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
+					{spacesCollection?.items.map(
+						space =>
+							space && (
+								<SwiperSlide key={space?.sys.id}>
+									<Space
+										data={space}
+										titleBottom="Amena"
+										description="Sumérgete en una experiencia gastronómica única en Amena, un rincón culinario que fusiona la tradición mediterránea con el vibrante sabor colombiano"
+										link="/"
+										img="/delete/amena.jpg"
+									/>
+								</SwiperSlide>
+							)
+					)}
+					{/* <SwiperSlide>
 						<Space
 							titleTop="Rooftop"
 							titleBottom="Inzolente"
@@ -94,7 +101,7 @@ const Component = () => {
 							link="/"
 							img="/delete/rooftop.jpg"
 						/>
-					</SwiperSlide>
+					</SwiperSlide> */}
 					<SwiperSlide>
 						<Experiences />
 					</SwiperSlide>

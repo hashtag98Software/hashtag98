@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.scss'
 import Header from 'components/Header/Header'
+import { ContentfulPreviewProvider } from 'components/contentful/contentful-preview-provider'
+import { draftMode } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,11 +17,19 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const { isEnabled } = draftMode()
+
 	return (
-		<html lang="en">
+		<html lang="es">
 			<body className={inter.className}>
-				<Header />
-				{children}
+				<ContentfulPreviewProvider
+					locale="es"
+					enableInspectorMode={isEnabled}
+					enableLiveUpdates={isEnabled}
+				>
+					<Header />
+					{children}
+				</ContentfulPreviewProvider>
 			</body>
 		</html>
 	)
