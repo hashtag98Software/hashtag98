@@ -23,8 +23,6 @@ const Header = () => {
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 	const params = useParams<{ lang: string }>()
 
-	console.log(params)
-
 	return (
 		<header className={s.header}>
 			<div className={`${s.header__menu} ${isMenuOpen && s.open}`}>
