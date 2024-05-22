@@ -1,8 +1,8 @@
 import { gql } from 'graphql-tag'
 
 export const homeData = gql`
-	query HomeData {
-		homeCollection {
+	query HomeData($locale: String) {
+		homeCollection(limit: 1, locale: $locale) {
 			items {
 				seo {
 					title
@@ -14,6 +14,12 @@ export const homeData = gql`
 							id
 						}
 						titleTop
+						titleBottom
+						description
+						link
+						image {
+							url
+						}
 					}
 				}
 			}

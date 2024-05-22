@@ -7,8 +7,10 @@ async function fetchGraphQL({
 	query,
 	preview = false,
 	next,
+	variables,
 }: {
 	query: TypedDocumentNode
+	variables?: { [key: string]: any }
 	preview?: boolean
 	next?: NextFetchRequestConfig
 }): Promise<any> {
@@ -24,13 +26,23 @@ async function fetchGraphQL({
 						: process.env.CONTENTFUL_ACCESS_TOKEN
 				}`,
 			},
-			body: JSON.stringify({ query: getGqlString(query) }),
+			body: JSON.stringify({ query: getGqlString(query), variables }),
 			next,
 		}
 	).then(response => response.json())
 }
 
-export const getHomeData = async ({ preview }: { preview?: boolean }) => {
-	const response = await fetchGraphQL({ query: homeData, preview })
+export const getHomeData = async ({
+	preview,
+	locale,
+}: {
+	preview?: boolean
+	locale: string
+}) => {
+	const response = await fetchGraphQL({
+		query: homeData,
+		preview,
+		variables: { locale },
+	})
 	return response.data.homeCollection.items[0] as Home
 }

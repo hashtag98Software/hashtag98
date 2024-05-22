@@ -10,9 +10,9 @@
 		"codegen": "graphql-codegen --config codegen.ts"
 	},
 	"dependencies": {
-		"@contentful/live-preview": "^4.1.0",
+		"@contentful/live-preview": "^4.1.1",
 		"@vis.gl/react-google-maps": "^1.0.0",
-		"framer-motion": "^11.2.2",
+		"framer-motion": "^11.2.5",
 		"graphql-tag": "^2.12.6",
 		"next": "14.2.3",
 		"react": "^18",
@@ -21,13 +21,13 @@
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
-		"@graphql-codegen/client-preset": "4.2.5",
+		"@graphql-codegen/client-preset": "^4.2.6",
 		"@types/node": "^20.12.12",
 		"@types/react": "^18.3.2",
 		"@types/react-dom": "^18",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.3",
-		"sass": "^1.77.1",
+		"sass": "^1.77.2",
 		"typescript": "^5"
 	}
 }

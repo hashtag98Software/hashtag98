@@ -7,6 +7,7 @@ import {
 	animationOnScreenContainer,
 	menuItemsAnimation,
 } from 'utils/helpers/framerMotionAnimations'
+import { useParams } from 'next/navigation'
 
 const Header = () => {
 	const menuItems = [
@@ -20,6 +21,9 @@ const Header = () => {
 	]
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+	const params = useParams<{ lang: string }>()
+
+	console.log(params)
 
 	return (
 		<header className={s.header}>
@@ -78,7 +82,7 @@ const Header = () => {
 						/>
 					</svg>
 				</button>
-				<Link className={s.header__left__lang} href="/">
+				<Link className={s.header__left__lang} href="/" locale="en">
 					ES
 				</Link>
 			</div>

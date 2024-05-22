@@ -83,13 +83,7 @@ const Component = ({ data }: { data: Home }) => {
 						space =>
 							space && (
 								<SwiperSlide key={space?.sys.id}>
-									<Space
-										data={space}
-										titleBottom="Amena"
-										description="Sumérgete en una experiencia gastronómica única en Amena, un rincón culinario que fusiona la tradición mediterránea con el vibrante sabor colombiano"
-										link="/"
-										img="/delete/amena.jpg"
-									/>
+									<Space data={space} />
 								</SwiperSlide>
 							)
 					)}

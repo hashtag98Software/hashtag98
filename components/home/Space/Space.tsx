@@ -12,20 +12,16 @@ import {
 } from '@contentful/live-preview/react'
 
 type Props = {
-	titleBottom: string
-	description: string
-	link: string
-	img: string
 	data: HotelPlace
 }
-const Space = ({ titleBottom, description, link, img, data }: Props) => {
+const Space = ({ data }: Props) => {
 	const updatedData = useContentfulLiveUpdates(data)
 	const inspectorProps = useContentfulInspectorMode({ entryId: data.sys.id })
 
 	return (
 		<section className={s.space}>
 			<motion.div
-				key={img}
+				key={updatedData.image?.url}
 				variants={{
 					offscreen: {
 						scale: 1.5,
@@ -39,7 +35,7 @@ const Space = ({ titleBottom, description, link, img, data }: Props) => {
 				}}
 				{...animationOnScreenContainer}
 				className={s.space__background}
-				style={{ backgroundImage: `url(${img})` }}
+				style={{ backgroundImage: `url(${updatedData.image?.url})` }}
 			></motion.div>
 			<motion.div
 				className={s.space__content}
@@ -50,17 +46,38 @@ const Space = ({ titleBottom, description, link, img, data }: Props) => {
 					<span
 						{...inspectorProps({
 							fieldId: 'titleTop',
-							manuallyTagged: undefined,
 						})}
 					>
 						{updatedData.titleTop}
 					</span>
-					<span className={s.space__content__title__bottom}>{titleBottom}</span>
+					<span
+						className={s.space__content__title__bottom}
+						{...inspectorProps({
+							fieldId: 'titleBottom',
+						})}
+					>
+						{updatedData.titleBottom}
+					</span>
 				</h2>
-				<p className={s.space__content__description}>{description}</p>
-				<Link href={link} className={s.space__content__button}>
-					VER MÁS
-				</Link>
+				<p
+					className={s.space__content__description}
+					{...inspectorProps({
+						fieldId: 'description',
+					})}
+				>
+					{updatedData.description}
+				</p>
+				{updatedData.link && (
+					<Link
+						{...inspectorProps({
+							fieldId: 'link',
+						})}
+						href={updatedData.link}
+						className={s.space__content__button}
+					>
+						VER MÁS
+					</Link>
+				)}
 			</motion.div>
 		</section>
 	)

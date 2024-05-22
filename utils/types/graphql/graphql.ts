@@ -180,10 +180,19 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  hotelPlaceCollection?: Maybe<HotelPlaceCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsHotelPlaceCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -275,6 +284,7 @@ export type Home = Entry & {
   __typename?: 'Home';
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<HomeLinkingCollections>;
+  revalidatePath?: Maybe<Scalars['String']['output']>;
   seo?: Maybe<Seo>;
   spacesCollection?: Maybe<HomeSpacesCollection>;
   sys: Sys;
@@ -284,6 +294,12 @@ export type Home = Entry & {
 /** Home Page [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/home) */
 export type HomeLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Home Page [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/home) */
+export type HomeRevalidatePathArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -317,6 +333,13 @@ export type HomeFilter = {
   AND?: InputMaybe<Array<InputMaybe<HomeFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<HomeFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  revalidatePath?: InputMaybe<Scalars['String']['input']>;
+  revalidatePath_contains?: InputMaybe<Scalars['String']['input']>;
+  revalidatePath_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  revalidatePath_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  revalidatePath_not?: InputMaybe<Scalars['String']['input']>;
+  revalidatePath_not_contains?: InputMaybe<Scalars['String']['input']>;
+  revalidatePath_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   seo?: InputMaybe<CfSeoNestedFilter>;
   seo_exists?: InputMaybe<Scalars['Boolean']['input']>;
   spaces?: InputMaybe<CfHotelPlaceNestedFilter>;
@@ -338,6 +361,8 @@ export type HomeLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum HomeOrder {
+  RevalidatePathAsc = 'revalidatePath_ASC',
+  RevalidatePathDesc = 'revalidatePath_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -357,6 +382,10 @@ export type HomeSpacesCollection = {
 };
 
 export enum HomeSpacesCollectionOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -365,6 +394,8 @@ export enum HomeSpacesCollectionOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleBottomAsc = 'titleBottom_ASC',
+  TitleBottomDesc = 'titleBottom_DESC',
   TitleTopAsc = 'titleTop_ASC',
   TitleTopDesc = 'titleTop_DESC'
 }
@@ -373,15 +404,44 @@ export enum HomeSpacesCollectionOrder {
 export type HotelPlace = Entry & {
   __typename?: 'HotelPlace';
   contentfulMetadata: ContentfulMetadata;
+  description?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Asset>;
+  link?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<HotelPlaceLinkingCollections>;
   sys: Sys;
+  titleBottom?: Maybe<Scalars['String']['output']>;
   titleTop?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Representa información de un espacio del Hotel (Se usa en el Home) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/hotelPlace) */
+export type HotelPlaceDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Representa información de un espacio del Hotel (Se usa en el Home) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/hotelPlace) */
+export type HotelPlaceImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Representa información de un espacio del Hotel (Se usa en el Home) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/hotelPlace) */
+export type HotelPlaceLinkArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 /** Representa información de un espacio del Hotel (Se usa en el Home) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/hotelPlace) */
 export type HotelPlaceLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Representa información de un espacio del Hotel (Se usa en el Home) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/hotelPlace) */
+export type HotelPlaceTitleBottomArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -402,7 +462,29 @@ export type HotelPlaceFilter = {
   AND?: InputMaybe<Array<InputMaybe<HotelPlaceFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<HotelPlaceFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  link_contains?: InputMaybe<Scalars['String']['input']>;
+  link_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  link_not?: InputMaybe<Scalars['String']['input']>;
+  link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  titleBottom?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_contains?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  titleBottom_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  titleBottom_not?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_not_contains?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   titleTop?: InputMaybe<Scalars['String']['input']>;
   titleTop_contains?: InputMaybe<Scalars['String']['input']>;
   titleTop_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -436,6 +518,8 @@ export type HotelPlaceLinkingCollectionsHomeCollectionArgs = {
 };
 
 export enum HotelPlaceLinkingCollectionsHomeCollectionOrder {
+  RevalidatePathAsc = 'revalidatePath_ASC',
+  RevalidatePathDesc = 'revalidatePath_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -447,6 +531,10 @@ export enum HotelPlaceLinkingCollectionsHomeCollectionOrder {
 }
 
 export enum HotelPlaceOrder {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -455,6 +543,8 @@ export enum HotelPlaceOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleBottomAsc = 'titleBottom_ASC',
+  TitleBottomDesc = 'titleBottom_DESC',
   TitleTopAsc = 'titleTop_ASC',
   TitleTopDesc = 'titleTop_DESC'
 }
@@ -734,6 +824,8 @@ export type SeoLinkingCollectionsHomeCollectionArgs = {
 };
 
 export enum SeoLinkingCollectionsHomeCollectionOrder {
+  RevalidatePathAsc = 'revalidatePath_ASC',
+  RevalidatePathDesc = 'revalidatePath_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -814,7 +906,29 @@ export type CfHotelPlaceNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfHotelPlaceNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfHotelPlaceNestedFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  link_contains?: InputMaybe<Scalars['String']['input']>;
+  link_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  link_not?: InputMaybe<Scalars['String']['input']>;
+  link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
+  titleBottom?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_contains?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  titleBottom_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  titleBottom_not?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_not_contains?: InputMaybe<Scalars['String']['input']>;
+  titleBottom_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   titleTop?: InputMaybe<Scalars['String']['input']>;
   titleTop_contains?: InputMaybe<Scalars['String']['input']>;
   titleTop_exists?: InputMaybe<Scalars['Boolean']['input']>;
