@@ -9,7 +9,7 @@ type MapProps = {
 }
 const Map = ({ className }: MapProps) => {
 	return (
-		<APIProvider apiKey={process.env.GOOGLE_MAPS_API_KEY || ''}>
+		<APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}>
 			<MapGoogle
 				className={className}
 				defaultCenter={{
