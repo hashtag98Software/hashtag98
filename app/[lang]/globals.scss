@@ -13,6 +13,9 @@ body {
 	max-width: 100vw;
 	overflow-x: hidden;
 }
+body {
+	background: #151515;
+}
 
 a {
 	color: inherit;
@@ -20,5 +23,6 @@ a {
 }
 
 button {
+	user-select: none;
 	-webkit-tap-highlight-color: transparent;
 }

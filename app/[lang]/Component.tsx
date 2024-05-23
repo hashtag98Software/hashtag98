@@ -2,16 +2,16 @@
 import 'swiper/css'
 import 'swiper/css/pagination'
 import s from './page.module.scss'
-import Map from 'components/home/Map/Map'
+import Map from 'components/Map/Map'
 import Hero from 'components/home/Hero/Hero'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Pagination, Autoplay } from 'swiper/modules'
-import SectionFooter from 'components/home/SectionFooter/SectionFooter'
 import Space from 'components/home/Space/Space'
 import RoomTypes from 'components/home/RoomTypes/RoomTypes'
 import Experiences from 'components/home/Experiences/Experiences'
 import FloatingMenu from 'components/home/FloatingMenu/FloatingMenu'
 import { Home } from 'utils/types/graphql/graphql'
+import Footer from 'components/Footer/Footer'
 
 const Component = ({ data }: { data: Home }) => {
 	const { spacesCollection } = data
@@ -57,8 +57,8 @@ const Component = ({ data }: { data: Home }) => {
 					</SwiperSlide> */}
 				</Swiper>
 				<Experiences />
-				<Map />
-				<SectionFooter />
+				<Map className={s.home__map} />
+				<Footer />
 			</div>
 			<div className={s.home__desktop}>
 				<Swiper
@@ -100,10 +100,10 @@ const Component = ({ data }: { data: Home }) => {
 						<Experiences />
 					</SwiperSlide>
 					<SwiperSlide>
-						<Map />
+						<Map className={s.home__map} />
 					</SwiperSlide>
 					<SwiperSlide>
-						<SectionFooter />
+						<Footer />
 					</SwiperSlide>
 				</Swiper>
 			</div>

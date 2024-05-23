@@ -1,0 +1,202 @@
+@import '../../../../styles/mixins/responsive';
+
+.contact {
+	&__hero {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		position: relative;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+		}
+		&__content {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			padding: 28px;
+			gap: 120px;
+			z-index: 1;
+			@include mobile {
+				grid-template-columns: 1fr;
+			}
+			&__info {
+				color: #fff;
+				@include mobile {
+					display: none;
+				}
+				&__title {
+					text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+					font-size: 64px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: normal;
+					margin-bottom: 11px;
+				}
+				&__item {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 500;
+					line-height: normal;
+					margin-bottom: 32px;
+					&__mail {
+						text-decoration: underline;
+					}
+				}
+			}
+			&__form {
+				display: flex;
+				flex-direction: column;
+				padding: 51px 44px;
+				max-width: 465px;
+				padding-bottom: 34px;
+				border-radius: 61px;
+				background: #eaeaea;
+				color: #0e0e0e;
+				&__title {
+					text-align: center;
+					font-size: 32px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: normal;
+					margin-bottom: 32px;
+					@include mobile {
+						font-size: 20px;
+					}
+				}
+				&__label {
+					display: grid;
+					gap: 9px;
+					margin-bottom: 16px;
+					&__text {
+						font-size: 20px;
+						font-style: normal;
+						font-weight: 700;
+						line-height: normal;
+						@include mobile {
+							font-size: 15px;
+						}
+					}
+					&__input {
+						height: 50px;
+						padding: 0 24px;
+						border-radius: 30px;
+						border: 1px solid #000;
+						background: #d9d9d9;
+						font-size: 16px;
+						outline-color: #000;
+						&::placeholder {
+							color: #969696;
+						}
+					}
+					&__error {
+						text-align: center;
+						font-size: 12px;
+						color: red;
+					}
+				}
+				&__terms {
+					display: flex;
+					align-items: flex-start;
+					gap: 4px;
+					margin-bottom: 22px;
+					user-select: none;
+					display: grid;
+					grid-template-columns: auto 1fr;
+					&__input {
+						accent-color: #0e0e0e;
+						margin-top: 2px;
+					}
+					&__text {
+						color: #000;
+						font-size: 12px;
+						font-style: normal;
+						font-weight: 400;
+						line-height: normal;
+					}
+					&__error {
+						text-align: center;
+						font-size: 12px;
+						color: red;
+						grid-column: span 2;
+					}
+				}
+				&__button {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 134px;
+					height: 30px;
+					margin: 0 auto;
+					border-radius: 30px;
+					background: #3a3a3a;
+					border: none;
+					box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+					color: #f7f7f7;
+					text-align: center;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: normal;
+				}
+			}
+		}
+	}
+	&__map {
+		width: 100vw;
+		height: 100vh;
+		@include mobile {
+			height: 50vh;
+		}
+	}
+	&__info {
+		display: none;
+		@include mobile {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 28px;
+			min-height: 50vh;
+			color: #fff;
+			&__title {
+				text-align: center;
+				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+				font-size: 32px;
+				font-style: normal;
+				font-weight: 800;
+				line-height: normal;
+				margin-bottom: 45px;
+			}
+			&__item {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				margin-bottom: 25px;
+				color: #fff;
+				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: normal;
+				&__mail {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

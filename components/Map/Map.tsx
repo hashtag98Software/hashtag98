@@ -4,11 +4,14 @@ import {
 	Marker,
 } from '@vis.gl/react-google-maps'
 
-const Map = () => {
+type MapProps = {
+	className?: string
+}
+const Map = ({ className }: MapProps) => {
 	return (
-		<APIProvider apiKey={'AIzaSyCF3eh50jv5GbKBuqUnHUB3eorHRpN4vRo'}>
+		<APIProvider apiKey={process.env.GOOGLE_MAPS_API_KEY || ''}>
 			<MapGoogle
-				style={{ width: '100vw', height: '100vh' }}
+				className={className}
 				defaultCenter={{
 					lat: 6.210641999306972,
 					lng: -75.56866823124714,

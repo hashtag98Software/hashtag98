@@ -26,3 +26,20 @@ export const homeData = gql`
 		}
 	}
 `
+
+export const contactData = gql`
+	query ContactData($locale: String) {
+		contactCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+				}
+				image {
+					url
+				}
+				email
+			}
+		}
+	}
+`

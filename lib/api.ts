@@ -1,7 +1,7 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
-import { homeData } from 'graphql/queries'
+import { contactData, homeData } from 'graphql/queries'
 import { getGqlString } from 'utils/helpers/getGqlString'
-import { Home } from 'utils/types/graphql/graphql'
+import { Contact, Home } from 'utils/types/graphql/graphql'
 
 async function fetchGraphQL({
 	query,
@@ -32,17 +32,25 @@ async function fetchGraphQL({
 	).then(response => response.json())
 }
 
-export const getHomeData = async ({
-	preview,
-	locale,
-}: {
+type GetData = {
 	preview?: boolean
 	locale: string
-}) => {
+}
+
+export const getHomeData = async ({ preview, locale }: GetData) => {
 	const response = await fetchGraphQL({
 		query: homeData,
 		preview,
 		variables: { locale },
 	})
 	return response.data.homeCollection.items[0] as Home
+}
+
+export const getContactData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: contactData,
+		preview,
+		variables: { locale },
+	})
+	return response.data.contactCollection.items[0] as Contact
 }
