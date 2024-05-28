@@ -25,6 +25,8 @@ export type Scalars = {
   Dimension: { input: any; output: any; }
   /** The 'HexColor' type represents color in `rgb:ffffff` string format. */
   HexColor: { input: any; output: any; }
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
+  JSON: { input: any; output: any; }
   /** The 'Quality' type represents quality as whole numeric values between `1` and `100`. */
   Quality: { input: any; output: any; }
 };
@@ -182,6 +184,8 @@ export type AssetLinkingCollections = {
   contactCollection?: Maybe<ContactCollection>;
   entryCollection?: Maybe<EntryCollection>;
   hotelPlaceCollection?: Maybe<HotelPlaceCollection>;
+  restaurantCollection?: Maybe<RestaurantCollection>;
+  rooftopCollection?: Maybe<RooftopCollection>;
 };
 
 
@@ -202,6 +206,22 @@ export type AssetLinkingCollectionsEntryCollectionArgs = {
 
 
 export type AssetLinkingCollectionsHotelPlaceCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsRestaurantCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsRooftopCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -742,6 +762,144 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']['input']>;
 };
 
+/** Páginas legales (Políticas de privacidad y tratamiento de datos, Código de conducta hashtag 98 hotel) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/legalPage) */
+export type LegalPage = Entry & {
+  __typename?: 'LegalPage';
+  content?: Maybe<LegalPageContent>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<LegalPageLinkingCollections>;
+  seo?: Maybe<Seo>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** Páginas legales (Políticas de privacidad y tratamiento de datos, Código de conducta hashtag 98 hotel) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/legalPage) */
+export type LegalPageContentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Páginas legales (Políticas de privacidad y tratamiento de datos, Código de conducta hashtag 98 hotel) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/legalPage) */
+export type LegalPageLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Páginas legales (Políticas de privacidad y tratamiento de datos, Código de conducta hashtag 98 hotel) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/legalPage) */
+export type LegalPageSeoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<SeoFilter>;
+};
+
+
+/** Páginas legales (Políticas de privacidad y tratamiento de datos, Código de conducta hashtag 98 hotel) [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/legalPage) */
+export type LegalPageTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type LegalPageCollection = {
+  __typename?: 'LegalPageCollection';
+  items: Array<Maybe<LegalPage>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type LegalPageContent = {
+  __typename?: 'LegalPageContent';
+  json: Scalars['JSON']['output'];
+  links: LegalPageContentLinks;
+};
+
+export type LegalPageContentAssets = {
+  __typename?: 'LegalPageContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type LegalPageContentEntries = {
+  __typename?: 'LegalPageContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type LegalPageContentLinks = {
+  __typename?: 'LegalPageContentLinks';
+  assets: LegalPageContentAssets;
+  entries: LegalPageContentEntries;
+  resources: LegalPageContentResources;
+};
+
+export type LegalPageContentResources = {
+  __typename?: 'LegalPageContentResources';
+  block: Array<LegalPageContentResourcesBlock>;
+  hyperlink: Array<LegalPageContentResourcesHyperlink>;
+  inline: Array<LegalPageContentResourcesInline>;
+};
+
+export type LegalPageContentResourcesBlock = ResourceLink & {
+  __typename?: 'LegalPageContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type LegalPageContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'LegalPageContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type LegalPageContentResourcesInline = ResourceLink & {
+  __typename?: 'LegalPageContentResourcesInline';
+  sys: ResourceSys;
+};
+
+export type LegalPageFilter = {
+  AND?: InputMaybe<Array<InputMaybe<LegalPageFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<LegalPageFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']['input']>;
+  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  content_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  seo?: InputMaybe<CfSeoNestedFilter>;
+  seo_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type LegalPageLinkingCollections = {
+  __typename?: 'LegalPageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type LegalPageLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum LegalPageOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
@@ -754,6 +912,12 @@ export type Query = {
   homeCollection?: Maybe<HomeCollection>;
   hotelPlace?: Maybe<HotelPlace>;
   hotelPlaceCollection?: Maybe<HotelPlaceCollection>;
+  legalPage?: Maybe<LegalPage>;
+  legalPageCollection?: Maybe<LegalPageCollection>;
+  restaurant?: Maybe<Restaurant>;
+  restaurantCollection?: Maybe<RestaurantCollection>;
+  rooftop?: Maybe<Rooftop>;
+  rooftopCollection?: Maybe<RooftopCollection>;
   seo?: Maybe<Seo>;
   seoCollection?: Maybe<SeoCollection>;
 };
@@ -844,6 +1008,57 @@ export type QueryHotelPlaceCollectionArgs = {
 };
 
 
+export type QueryLegalPageArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryLegalPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<LegalPageOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<LegalPageFilter>;
+};
+
+
+export type QueryRestaurantArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryRestaurantCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<RestaurantOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RestaurantFilter>;
+};
+
+
+export type QueryRooftopArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryRooftopCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<RooftopOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RooftopFilter>;
+};
+
+
 export type QuerySeoArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -859,6 +1074,394 @@ export type QuerySeoCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SeoFilter>;
 };
+
+export type ResourceLink = {
+  sys: ResourceSys;
+};
+
+export type ResourceSys = {
+  __typename?: 'ResourceSys';
+  linkType: Scalars['String']['output'];
+  urn: Scalars['String']['output'];
+};
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type Restaurant = Entry & {
+  __typename?: 'Restaurant';
+  button1Text?: Maybe<Scalars['String']['output']>;
+  button2Text?: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  imageDesktop?: Maybe<Asset>;
+  imageMobile?: Maybe<Asset>;
+  imagesCollection?: Maybe<AssetCollection>;
+  linkedFrom?: Maybe<RestaurantLinkingCollections>;
+  logo?: Maybe<Asset>;
+  message?: Maybe<Scalars['String']['output']>;
+  seo?: Maybe<Seo>;
+  subMessage?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  text1?: Maybe<Scalars['String']['output']>;
+  text2?: Maybe<Scalars['String']['output']>;
+  video?: Maybe<Asset>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantButton1TextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantButton2TextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantImageDesktopArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantImageMobileArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantLogoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantMessageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantSeoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<SeoFilter>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantSubMessageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantText1Args = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantText2Args = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de restaurante [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/restaurant) */
+export type RestaurantVideoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type RestaurantCollection = {
+  __typename?: 'RestaurantCollection';
+  items: Array<Maybe<Restaurant>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type RestaurantFilter = {
+  AND?: InputMaybe<Array<InputMaybe<RestaurantFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<RestaurantFilter>>>;
+  button1Text?: InputMaybe<Scalars['String']['input']>;
+  button1Text_contains?: InputMaybe<Scalars['String']['input']>;
+  button1Text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  button1Text_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  button1Text_not?: InputMaybe<Scalars['String']['input']>;
+  button1Text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  button1Text_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  button2Text?: InputMaybe<Scalars['String']['input']>;
+  button2Text_contains?: InputMaybe<Scalars['String']['input']>;
+  button2Text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  button2Text_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  button2Text_not?: InputMaybe<Scalars['String']['input']>;
+  button2Text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  button2Text_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  imageDesktop_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  imageMobile_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  imagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  logo_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  message_contains?: InputMaybe<Scalars['String']['input']>;
+  message_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  message_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  message_not?: InputMaybe<Scalars['String']['input']>;
+  message_not_contains?: InputMaybe<Scalars['String']['input']>;
+  message_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seo?: InputMaybe<CfSeoNestedFilter>;
+  seo_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  subMessage?: InputMaybe<Scalars['String']['input']>;
+  subMessage_contains?: InputMaybe<Scalars['String']['input']>;
+  subMessage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  subMessage_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  subMessage_not?: InputMaybe<Scalars['String']['input']>;
+  subMessage_not_contains?: InputMaybe<Scalars['String']['input']>;
+  subMessage_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  text1?: InputMaybe<Scalars['String']['input']>;
+  text1_contains?: InputMaybe<Scalars['String']['input']>;
+  text1_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text1_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text1_not?: InputMaybe<Scalars['String']['input']>;
+  text1_not_contains?: InputMaybe<Scalars['String']['input']>;
+  text1_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text2?: InputMaybe<Scalars['String']['input']>;
+  text2_contains?: InputMaybe<Scalars['String']['input']>;
+  text2_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text2_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text2_not?: InputMaybe<Scalars['String']['input']>;
+  text2_not_contains?: InputMaybe<Scalars['String']['input']>;
+  text2_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  video_exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type RestaurantLinkingCollections = {
+  __typename?: 'RestaurantLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type RestaurantLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum RestaurantOrder {
+  Button1TextAsc = 'button1Text_ASC',
+  Button1TextDesc = 'button1Text_DESC',
+  Button2TextAsc = 'button2Text_ASC',
+  Button2TextDesc = 'button2Text_DESC',
+  MessageAsc = 'message_ASC',
+  MessageDesc = 'message_DESC',
+  SubMessageAsc = 'subMessage_ASC',
+  SubMessageDesc = 'subMessage_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  Text1Asc = 'text1_ASC',
+  Text1Desc = 'text1_DESC',
+  Text2Asc = 'text2_ASC',
+  Text2Desc = 'text2_DESC'
+}
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type Rooftop = Entry & {
+  __typename?: 'Rooftop';
+  buttonText?: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  facebookUrl?: Maybe<Scalars['String']['output']>;
+  facebookUsername?: Maybe<Scalars['String']['output']>;
+  imagesCollection?: Maybe<AssetCollection>;
+  instagramUrl?: Maybe<Scalars['String']['output']>;
+  instagramUsername?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<RooftopLinkingCollections>;
+  logoBlack?: Maybe<Asset>;
+  logoHero?: Maybe<Asset>;
+  sys: Sys;
+  video?: Maybe<Asset>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopButtonTextArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopFacebookUrlArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopFacebookUsernameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopInstagramUrlArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopInstagramUsernameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopLogoBlackArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopLogoHeroArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** Información de la página de Rooftop [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/rooftop) */
+export type RooftopVideoArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type RooftopCollection = {
+  __typename?: 'RooftopCollection';
+  items: Array<Maybe<Rooftop>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type RooftopFilter = {
+  AND?: InputMaybe<Array<InputMaybe<RooftopFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<RooftopFilter>>>;
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  buttonText_contains?: InputMaybe<Scalars['String']['input']>;
+  buttonText_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  buttonText_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  buttonText_not?: InputMaybe<Scalars['String']['input']>;
+  buttonText_not_contains?: InputMaybe<Scalars['String']['input']>;
+  buttonText_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  facebookUrl?: InputMaybe<Scalars['String']['input']>;
+  facebookUrl_contains?: InputMaybe<Scalars['String']['input']>;
+  facebookUrl_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  facebookUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  facebookUrl_not?: InputMaybe<Scalars['String']['input']>;
+  facebookUrl_not_contains?: InputMaybe<Scalars['String']['input']>;
+  facebookUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  facebookUsername?: InputMaybe<Scalars['String']['input']>;
+  facebookUsername_contains?: InputMaybe<Scalars['String']['input']>;
+  facebookUsername_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  facebookUsername_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  facebookUsername_not?: InputMaybe<Scalars['String']['input']>;
+  facebookUsername_not_contains?: InputMaybe<Scalars['String']['input']>;
+  facebookUsername_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  imagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  instagramUrl?: InputMaybe<Scalars['String']['input']>;
+  instagramUrl_contains?: InputMaybe<Scalars['String']['input']>;
+  instagramUrl_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  instagramUrl_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  instagramUrl_not?: InputMaybe<Scalars['String']['input']>;
+  instagramUrl_not_contains?: InputMaybe<Scalars['String']['input']>;
+  instagramUrl_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  instagramUsername?: InputMaybe<Scalars['String']['input']>;
+  instagramUsername_contains?: InputMaybe<Scalars['String']['input']>;
+  instagramUsername_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  instagramUsername_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  instagramUsername_not?: InputMaybe<Scalars['String']['input']>;
+  instagramUsername_not_contains?: InputMaybe<Scalars['String']['input']>;
+  instagramUsername_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  logoBlack_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  logoHero_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  video_exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type RooftopLinkingCollections = {
+  __typename?: 'RooftopLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type RooftopLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum RooftopOrder {
+  ButtonTextAsc = 'buttonText_ASC',
+  ButtonTextDesc = 'buttonText_DESC',
+  FacebookUrlAsc = 'facebookUrl_ASC',
+  FacebookUrlDesc = 'facebookUrl_DESC',
+  FacebookUsernameAsc = 'facebookUsername_ASC',
+  FacebookUsernameDesc = 'facebookUsername_DESC',
+  InstagramUrlAsc = 'instagramUrl_ASC',
+  InstagramUrlDesc = 'instagramUrl_DESC',
+  InstagramUsernameAsc = 'instagramUsername_ASC',
+  InstagramUsernameDesc = 'instagramUsername_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 /** Contiene información relaciona con el SEO de una página [See type definition](https://app.contentful.com/spaces/9q4if916fz49/content_types/seo) */
 export type Seo = Entry & {
@@ -922,6 +1525,8 @@ export type SeoLinkingCollections = {
   contactCollection?: Maybe<ContactCollection>;
   entryCollection?: Maybe<EntryCollection>;
   homeCollection?: Maybe<HomeCollection>;
+  legalPageCollection?: Maybe<LegalPageCollection>;
+  restaurantCollection?: Maybe<RestaurantCollection>;
 };
 
 
@@ -950,6 +1555,24 @@ export type SeoLinkingCollectionsHomeCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type SeoLinkingCollectionsLegalPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SeoLinkingCollectionsLegalPageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type SeoLinkingCollectionsRestaurantCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SeoLinkingCollectionsRestaurantCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export enum SeoLinkingCollectionsContactCollectionOrder {
   EmailAsc = 'email_ASC',
   EmailDesc = 'email_DESC',
@@ -974,6 +1597,42 @@ export enum SeoLinkingCollectionsHomeCollectionOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export enum SeoLinkingCollectionsLegalPageCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum SeoLinkingCollectionsRestaurantCollectionOrder {
+  Button1TextAsc = 'button1Text_ASC',
+  Button1TextDesc = 'button1Text_DESC',
+  Button2TextAsc = 'button2Text_ASC',
+  Button2TextDesc = 'button2Text_DESC',
+  MessageAsc = 'message_ASC',
+  MessageDesc = 'message_DESC',
+  SubMessageAsc = 'subMessage_ASC',
+  SubMessageDesc = 'subMessage_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  Text1Asc = 'text1_ASC',
+  Text1Desc = 'text1_DESC',
+  Text2Asc = 'text2_ASC',
+  Text2Desc = 'text2_DESC'
 }
 
 export enum SeoOrder {
@@ -1113,6 +1772,31 @@ export type ContactDataQueryVariables = Exact<{
 
 export type ContactDataQuery = { __typename?: 'Query', contactCollection?: { __typename?: 'ContactCollection', items: Array<{ __typename?: 'Contact', email?: string | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null } | null, image?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null };
 
+export type LegalDataQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type LegalDataQuery = { __typename?: 'Query', legalPage?: { __typename?: 'LegalPage', title?: string | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null } | null, content?: { __typename?: 'LegalPageContent', json: any } | null } | null };
+
+export type RestaurantDataQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type RestaurantDataQuery = { __typename?: 'Query', restaurantCollection?: { __typename?: 'RestaurantCollection', items: Array<{ __typename?: 'Restaurant', message?: string | null, subMessage?: string | null, button1Text?: string | null, button2Text?: string | null, text1?: string | null, text2?: string | null, logo?: { __typename?: 'Asset', url?: string | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null } | null, video?: { __typename?: 'Asset', url?: string | null } | null, imageDesktop?: { __typename?: 'Asset', title?: string | null, url?: string | null } | null, imageMobile?: { __typename?: 'Asset', title?: string | null, url?: string | null } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null> } | null } | null> } | null };
+
+export type RooftopDataQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type RooftopDataQuery = { __typename?: 'Query', rooftopCollection?: { __typename?: 'RooftopCollection', items: Array<{ __typename?: 'Rooftop', buttonText?: string | null, instagramUsername?: string | null, instagramUrl?: string | null, facebookUsername?: string | null, facebookUrl?: string | null, video?: { __typename?: 'Asset', url?: string | null } | null, logoHero?: { __typename?: 'Asset', url?: string | null } | null, logoBlack?: { __typename?: 'Asset', url?: string | null } | null, imagesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null } | null> } | null } | null> } | null };
+
 
 export const HomeDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomeData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homeCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"spacesCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sys"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"titleTop"}},{"kind":"Field","name":{"kind":"Name","value":"titleBottom"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<HomeDataQuery, HomeDataQueryVariables>;
 export const ContactDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ContactData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"contactCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]} as unknown as DocumentNode<ContactDataQuery, ContactDataQueryVariables>;
+export const LegalDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"LegalData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"legalPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}}]}}]} as unknown as DocumentNode<LegalDataQuery, LegalDataQueryVariables>;
+export const RestaurantDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"RestaurantData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"restaurantCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"subMessage"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imageDesktop"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imageMobile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"button1Text"}},{"kind":"Field","name":{"kind":"Name","value":"button2Text"}},{"kind":"Field","name":{"kind":"Name","value":"imagesCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"text1"}},{"kind":"Field","name":{"kind":"Name","value":"text2"}}]}}]}}]}}]} as unknown as DocumentNode<RestaurantDataQuery, RestaurantDataQueryVariables>;
+export const RooftopDataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"RooftopData"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rooftopCollection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"logoHero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"logoBlack"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"buttonText"}},{"kind":"Field","name":{"kind":"Name","value":"imagesCollection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"instagramUsername"}},{"kind":"Field","name":{"kind":"Name","value":"instagramUrl"}},{"kind":"Field","name":{"kind":"Name","value":"facebookUsername"}},{"kind":"Field","name":{"kind":"Name","value":"facebookUrl"}}]}}]}}]}}]} as unknown as DocumentNode<RooftopDataQuery, RooftopDataQueryVariables>;

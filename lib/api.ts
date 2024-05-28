@@ -1,7 +1,19 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
-import { contactData, homeData } from 'graphql/queries'
+import {
+	contactData,
+	homeData,
+	legalData,
+	restaurantData,
+	rooftopData,
+} from 'graphql/queries'
 import { getGqlString } from 'utils/helpers/getGqlString'
-import { Contact, Home } from 'utils/types/graphql/graphql'
+import {
+	Contact,
+	Home,
+	LegalDataQuery,
+	Restaurant,
+	Rooftop,
+} from 'utils/types/graphql/graphql'
 
 async function fetchGraphQL({
 	query,
@@ -53,4 +65,34 @@ export const getContactData = async ({ preview, locale }: GetData) => {
 		variables: { locale },
 	})
 	return response.data.contactCollection.items[0] as Contact
+}
+
+interface GetLegalData extends GetData {
+	id: string
+}
+export const getLegalData = async ({ preview, id, locale }: GetLegalData) => {
+	const response = await fetchGraphQL({
+		query: legalData,
+		preview,
+		variables: { id, locale },
+	})
+	return response.data.legalPage as LegalDataQuery['legalPage']
+}
+
+export const getRestaurantData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: restaurantData,
+		preview,
+		variables: { locale },
+	})
+	return response.data.restaurantCollection.items[0] as Restaurant
+}
+
+export const getRooftopData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: rooftopData,
+		preview,
+		variables: { locale },
+	})
+	return response.data.rooftopCollection.items[0] as Rooftop
 }

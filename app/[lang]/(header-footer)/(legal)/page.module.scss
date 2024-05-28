@@ -1,0 +1,41 @@
+@import '../../../../styles/mixins/responsive';
+
+.legal {
+	color: #fff;
+	padding: 25px;
+	padding-top: 191px;
+	padding-bottom: 96px;
+	@include mobile {
+		font-size: 16px;
+		padding-top: 98px;
+	}
+	&__title {
+		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		font-size: 36px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: normal;
+		text-align: center;
+		margin: 0 auto;
+		margin-bottom: 65px;
+		@include mobile {
+			font-size: 16px;
+			margin-bottom: 18px;
+		}
+	}
+	&__content {
+		width: 100%;
+		max-width: 1017px;
+		margin: 0 auto;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 800;
+		line-height: normal;
+		p {
+			margin-bottom: 1rem;
+		}
+		li {
+			margin-left: 1rem;
+		}
+	}
+}

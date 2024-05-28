@@ -43,3 +43,86 @@ export const contactData = gql`
 		}
 	}
 `
+
+export const legalData = gql`
+	query LegalData($id: String!, $locale: String) {
+		legalPage(id: $id, locale: $locale) {
+			seo {
+				title
+				description
+			}
+			title
+			content {
+				json
+			}
+		}
+	}
+`
+
+export const restaurantData = gql`
+	query RestaurantData($locale: String) {
+		restaurantCollection(limit: 1, locale: $locale) {
+			items {
+				logo {
+					url
+				}
+				seo {
+					title
+					description
+				}
+				message
+				subMessage
+				video {
+					url
+				}
+				imageDesktop {
+					title
+					url
+				}
+				imageMobile {
+					title
+					url
+				}
+				button1Text
+				button2Text
+				imagesCollection {
+					items {
+						url
+						width
+						height
+					}
+				}
+				text1
+				text2
+			}
+		}
+	}
+`
+
+export const rooftopData = gql`
+	query RooftopData($locale: String) {
+		rooftopCollection(limit: 1, locale: $locale) {
+			items {
+				video {
+					url
+				}
+				logoHero {
+					url
+				}
+				logoBlack {
+					url
+				}
+				buttonText
+				imagesCollection {
+					items {
+						url
+					}
+				}
+				instagramUsername
+				instagramUrl
+				facebookUsername
+				facebookUrl
+			}
+		}
+	}
+`
