@@ -126,3 +126,37 @@ export const rooftopData = gql`
 		}
 	}
 `
+
+export const roomsSlugs = gql`
+	query RoomsSlugs {
+		roomCollection {
+			items {
+				slug
+			}
+		}
+	}
+`
+
+export const roomData = gql`
+	query RoomData($slug: String!, $locale: String) {
+		roomCollection(limit: 1, where: { slug: $slug }, locale: $locale) {
+			items {
+				type
+				mainDescription
+				video {
+					url
+				}
+				description
+				m2
+				attributes
+				imagesCollection {
+					items {
+						url
+						width
+						height
+					}
+				}
+			}
+		}
+	}
+`

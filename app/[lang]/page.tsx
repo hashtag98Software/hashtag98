@@ -1,6 +1,7 @@
+import './page.scss'
+import '../../styles/components/CloudBedsWidget.scss'
 import { notFound } from 'next/navigation'
 import Component from './Component'
-import './page.scss'
 import { getHomeData } from 'lib/api'
 import { draftMode } from 'next/headers'
 import type { GlobalParams } from 'utils/types/GlobalParams'

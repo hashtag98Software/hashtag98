@@ -5,6 +5,8 @@ import {
 	legalData,
 	restaurantData,
 	rooftopData,
+	roomData,
+	roomsSlugs,
 } from 'graphql/queries'
 import { getGqlString } from 'utils/helpers/getGqlString'
 import {
@@ -13,6 +15,7 @@ import {
 	LegalDataQuery,
 	Restaurant,
 	Rooftop,
+	Room,
 } from 'utils/types/graphql/graphql'
 
 async function fetchGraphQL({
@@ -95,4 +98,22 @@ export const getRooftopData = async ({ preview, locale }: GetData) => {
 		variables: { locale },
 	})
 	return response.data.rooftopCollection.items[0] as Rooftop
+}
+
+export const getRoomsSlugs = async () => {
+	const response = await fetchGraphQL({ query: roomsSlugs })
+	return response.data.roomCollection.items as Room[]
+}
+
+export const getRoomData = async ({
+	preview,
+	locale,
+	slug,
+}: GetData & { slug: string }) => {
+	const response = await fetchGraphQL({
+		query: roomData,
+		preview,
+		variables: { locale, slug },
+	})
+	return response.data.roomCollection.items[0] as Room
 }

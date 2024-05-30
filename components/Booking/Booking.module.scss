@@ -1,0 +1,62 @@
+@import '../../styles/mixins/link-hover';
+@import '../../styles/mixins/responsive';
+
+.booking {
+	display: flex;
+	border-radius: 100px;
+	&__menu {
+		$button-height: 51px;
+		@include mobile {
+			display: none;
+		}
+		&__button {
+			height: $button-height;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-left: 21px;
+			padding-right: 12px;
+			gap: 8px;
+			cursor: pointer;
+			color: #fff;
+			font-size: 20px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			border-top-left-radius: 30px;
+			border-bottom-left-radius: 30px;
+			background: rgba(0, 0, 0, 0.37);
+			border: 2px solid #d9d9d9;
+			border-right: none;
+			position: relative;
+			&__arrow {
+				transition: 0.5s;
+				&.active {
+					transform: rotate(180deg);
+				}
+			}
+		}
+		&__content {
+			padding: 74px 26px;
+			background: #151515;
+			border-radius: 60px;
+			position: absolute;
+			bottom: $button-height + 16px;
+			overflow: hidden;
+			&__list {
+				list-style: none;
+				display: flex;
+				flex-direction: column;
+				gap: 22px;
+				&__item {
+					color: #fff;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: normal;
+					@include link-hover;
+				}
+			}
+		}
+	}
+}

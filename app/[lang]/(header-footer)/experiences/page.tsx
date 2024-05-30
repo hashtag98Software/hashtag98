@@ -1,7 +1,7 @@
 import Component from './Component'
 
-const RoomType = () => {
+const Experiences = () => {
 	return <Component />
 }
 
-export default RoomType
+export default Experiences

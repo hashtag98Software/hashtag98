@@ -9,7 +9,7 @@ import { Mousewheel, Pagination, Autoplay } from 'swiper/modules'
 import Space from 'components/home/Space/Space'
 import RoomTypes from 'components/home/RoomTypes/RoomTypes'
 import Experiences from 'components/home/Experiences/Experiences'
-import FloatingMenu from 'components/home/FloatingMenu/FloatingMenu'
+import Booking from 'components/Booking/Booking'
 import { Home } from 'utils/types/graphql/graphql'
 import Footer from 'components/Footer/Footer'
 
@@ -18,13 +18,9 @@ const Component = ({ data }: { data: Home }) => {
 
 	return (
 		<main className={s.home}>
-			<FloatingMenu />
-			<div
-				dangerouslySetInnerHTML={{
-					__html:
-						'<script src="https://hotels.cloudbeds.com/widget/load/KpLlBr/horiz?newWindow=1"></script>',
-				}}
-			></div>
+			<div className={s.home__booking}>
+				<Booking />
+			</div>
 			<div className={s.home__mobile}>
 				<Hero />
 				<RoomTypes />

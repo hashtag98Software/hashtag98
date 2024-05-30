@@ -5,6 +5,17 @@
 	@include mobile {
 		height: auto;
 	}
+	&__booking {
+		position: fixed;
+		left: 84px;
+		bottom: 133px;
+		z-index: 2;
+		@include mobile {
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: 112px;
+		}
+	}
 	&__map {
 		width: 100vw;
 		height: 100vh;
