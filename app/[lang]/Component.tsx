@@ -22,8 +22,8 @@ const Component = ({ data }: { data: Home }) => {
 				<Booking />
 			</div>
 			<div className={s.home__mobile}>
-				<Hero />
-				<RoomTypes />
+				<Hero data={data} />
+				{data.rooms && <RoomTypes data={data.rooms} />}
 				<Swiper
 					id="home-slider-mobile"
 					slidesPerView={1}
@@ -70,11 +70,13 @@ const Component = ({ data }: { data: Home }) => {
 					className={s.home__desktop__swiper}
 				>
 					<SwiperSlide>
-						<Hero />
+						<Hero data={data} />
 					</SwiperSlide>
-					<SwiperSlide>
-						<RoomTypes />
-					</SwiperSlide>
+					{data.rooms && (
+						<SwiperSlide>
+							<RoomTypes data={data.rooms} />
+						</SwiperSlide>
+					)}
 					{spacesCollection?.items.map(
 						space =>
 							space && (

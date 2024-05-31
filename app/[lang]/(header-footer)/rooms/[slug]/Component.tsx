@@ -10,6 +10,14 @@ import Booking from 'components/Booking/Booking'
 
 const Component = ({ data }: { data: Room }) => {
 	const [isOpenAttributes, setIsOpenAttributes] = useState(false)
+	const attributesIcons = {
+		Wifi: '/img/wifi.png',
+		Cafetera: '/img/coffee.png',
+		'Vigilancia 24/7': '/img/security.png',
+		'Secador de Pelo': '/img/dryer.png',
+		'Aire acondicionado': '/img/air.png',
+		Escritorio: '/img/desk.png',
+	}
 
 	const toggleAttributes = () => setIsOpenAttributes(!isOpenAttributes)
 
@@ -77,6 +85,13 @@ const Component = ({ data }: { data: Room }) => {
 				>
 					{data.attributes?.map(attr => (
 						<div key={attr} className={s.room__hero__attributes__item}>
+							{attr && (
+								<img
+									src={attributesIcons[attr as keyof typeof attributesIcons]}
+									alt={attr}
+									className={s.room__hero__attributes__item__icon}
+								/>
+							)}
 							<span>{attr}</span>
 						</div>
 					))}
@@ -101,7 +116,7 @@ const Component = ({ data }: { data: Room }) => {
 			<section className={s.room__gallery}>
 				<Gallery>
 					{data.imagesCollection?.items?.map(
-						img =>
+						(img, index) =>
 							img?.url && (
 								<Item
 									original={img.url}
@@ -110,88 +125,58 @@ const Component = ({ data }: { data: Room }) => {
 									height={img.height || undefined}
 									key={img.url}
 								>
-									{({ ref, open }) => (
-										<div className={s.room__gallery__item}>
-											<div className={s.room__gallery__item__content}>
-												<IoSearchSharp size={32} />
+									{({ ref, open }) =>
+										index < 4 ? (
+											<div className={s.room__gallery__item}>
+												<div className={s.room__gallery__item__content}>
+													<IoSearchSharp size={32} />
+												</div>
+												{img.url && (
+													<img
+														ref={ref}
+														onClick={open}
+														src={img.url}
+														alt={`${data.type} - ${data.mainDescription}`}
+														className={s.room__gallery__item__img}
+													/>
+												)}
 											</div>
-											{img.url && (
-												<img
-													ref={ref}
-													onClick={open}
-													src={img.url}
-													alt={`${data.type} - ${data.mainDescription}`}
-													className={s.room__gallery__item__img}
-												/>
-											)}
-										</div>
-									)}
+										) : (
+											<div ref={ref} style={{ display: 'none' }} />
+										)
+									}
 								</Item>
 							)
 					)}
 				</Gallery>
 			</section>
 			<section className={s.room__more_types}>
-				<div className={s.room__more_types__item}>
-					<div className={s.room__more_types__item__content}>
-						<h3 className={s.room__more_types__item__content__title}>XL</h3>
-						<Link
-							href="/es/rooms/xl"
-							className={s.room__more_types__item__content__button}
-						>
-							VER MÁS
-						</Link>
+				{data.relatedCollection?.items?.map(room => (
+					<div key={room?.slug} className={s.room__more_types__item}>
+						<div className={s.room__more_types__item__content}>
+							<h3 className={s.room__more_types__item__content__title}>
+								{room?.type}
+							</h3>
+							<Link
+								href={`/rooms/${room?.slug}`}
+								className={s.room__more_types__item__content__button}
+							>
+								VER MÁS
+							</Link>
+						</div>
+						{room?.video?.url && (
+							<video
+								autoPlay
+								muted
+								loop
+								className={s.room__more_types__item__video}
+							>
+								<source src={room?.video?.url} type="video/mp4" />
+								Your browser does not support HTML5 video.
+							</video>
+						)}
 					</div>
-					<video
-						autoPlay
-						muted
-						loop
-						className={s.room__more_types__item__video}
-					>
-						<source src="/delete/video.mp4" type="video/mp4" />
-						Your browser does not support HTML5 video.
-					</video>
-				</div>
-				<div className={s.room__more_types__item}>
-					<div className={s.room__more_types__item__content}>
-						<h3 className={s.room__more_types__item__content__title}>XL</h3>
-						<Link
-							href="/es/rooms/xl"
-							className={s.room__more_types__item__content__button}
-						>
-							VER MÁS
-						</Link>
-					</div>
-					<video
-						autoPlay
-						muted
-						loop
-						className={s.room__more_types__item__video}
-					>
-						<source src="/delete/video.mp4" type="video/mp4" />
-						Your browser does not support HTML5 video.
-					</video>
-				</div>
-				<div className={s.room__more_types__item}>
-					<div className={s.room__more_types__item__content}>
-						<h3 className={s.room__more_types__item__content__title}>XL</h3>
-						<Link
-							href="/es/rooms/xl"
-							className={s.room__more_types__item__content__button}
-						>
-							VER MÁS
-						</Link>
-					</div>
-					<video
-						autoPlay
-						muted
-						loop
-						className={s.room__more_types__item__video}
-					>
-						<source src="/delete/video.mp4" type="video/mp4" />
-						Your browser does not support HTML5 video.
-					</video>
-				</div>
+				))}
 			</section>
 		</main>
 	)

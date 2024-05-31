@@ -11,12 +11,12 @@ import { MdOutlineKeyboardArrowUp } from 'react-icons/md'
 const Booking = () => {
 	const menuItems = [
 		{ label: 'HOTEL', link: '/' },
-		{ label: 'HABITACIONES', link: '/' },
-		{ label: 'AMENA', link: '/' },
-		{ label: 'INZOLENTE', link: '/' },
+		{ label: 'HABITACIONES', link: '/rooms' },
+		{ label: 'AMENA', link: '/restaurant' },
+		{ label: 'INZOLENTE', link: '/rooftop' },
 		{ label: 'EXPERIENCIAS', link: '/' },
 		{ label: 'UBICACIÓN', link: '/' },
-		{ label: 'CONTÁCTANOS', link: '/' },
+		{ label: 'CONTÁCTANOS', link: '/contact' },
 	]
 	const [isOpen, setIsOpen] = useState(false)
 

@@ -8,6 +8,27 @@ export const homeData = gql`
 					title
 					description
 				}
+				videoDesktop {
+					url
+				}
+				videoMobile {
+					url
+				}
+				rooms {
+					button
+					roomsCollection {
+						items {
+							type
+							mainDescription
+							slug
+							imagesCollection(limit: 1) {
+								items {
+									url
+								}
+							}
+						}
+					}
+				}
 				spacesCollection {
 					items {
 						sys {
@@ -154,6 +175,36 @@ export const roomData = gql`
 						url
 						width
 						height
+					}
+				}
+				relatedCollection {
+					items {
+						type
+						slug
+						video {
+							url
+						}
+					}
+				}
+			}
+		}
+	}
+`
+
+export const roomsData = gql`
+	query RoomsData($locale: String) {
+		roomsCollection(limit: 1, locale: $locale) {
+			items {
+				button
+				roomsCollection {
+					items {
+						type
+						mainDescription
+						imagesCollection(limit: 1) {
+							items {
+								url
+							}
+						}
 					}
 				}
 			}
