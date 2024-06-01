@@ -33,24 +33,14 @@ const Component = ({ data }: { data: Home }) => {
 					modules={[Autoplay, Pagination]}
 					className={s.home__mobile__swiper}
 				>
-					{/* <SwiperSlide>
-						<Space
-							titleTop="Restaurante"
-							titleBottom="Amena"
-							description="Sumérgete en una experiencia gastronómica única en Amena, un rincón culinario que fusiona la tradición mediterránea con el vibrante sabor colombiano"
-							link="/"
-							img="/delete/amena.jpg"
-						/>
-					</SwiperSlide>
-					<SwiperSlide>
-						<Space
-							titleTop="Rooftop"
-							titleBottom="Inzolente"
-							description="Descubre el encanto de Medellín desde las alturas en el rooftop Inzolente, ubicado en el exclusivo hotel Hashtag 98. Este oasis urbano ofrece una experiencia única que combina vistas panorámicas impresionantes con cocteles de autor exquisitamente elaborados. "
-							link="/"
-							img="/delete/rooftop.jpg"
-						/>
-					</SwiperSlide> */}
+					{spacesCollection?.items.map(
+						space =>
+							space && (
+								<SwiperSlide key={space?.sys.id}>
+									<Space data={space} />
+								</SwiperSlide>
+							)
+					)}
 				</Swiper>
 				<Experiences />
 				<Map className={s.home__map} />
@@ -85,15 +75,6 @@ const Component = ({ data }: { data: Home }) => {
 								</SwiperSlide>
 							)
 					)}
-					{/* <SwiperSlide>
-						<Space
-							titleTop="Rooftop"
-							titleBottom="Inzolente"
-							description="Descubre el encanto de Medellín desde las alturas en el rooftop Inzolente, ubicado en el exclusivo hotel Hashtag 98. Este oasis urbano ofrece una experiencia única que combina vistas panorámicas impresionantes con cocteles de autor exquisitamente elaborados. "
-							link="/"
-							img="/delete/rooftop.jpg"
-						/>
-					</SwiperSlide> */}
 					<SwiperSlide>
 						<Experiences />
 					</SwiperSlide>
