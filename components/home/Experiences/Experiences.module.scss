@@ -10,7 +10,8 @@
 	max-height: 100vh;
 	@include mobile {
 		grid-template-columns: 1fr;
-		grid-template-rows: repeat(3, 1fr);
+		grid-template-rows: repeat(3, 50vh);
+		max-height: initial;
 	}
 	&__swiper {
 		width: 100%;
@@ -41,7 +42,7 @@
 					border-radius: 100px;
 					background: rgba(0, 0, 0, 0.5);
 					padding: 1rem;
-					max-width: 65%;
+					max-width: 85%;
 					margin-bottom: 41px;
 					@include mobile {
 						margin-bottom: 1rem;
@@ -62,6 +63,9 @@
 					min-height: 39px;
 					padding: 0 40px;
 					opacity: 0;
+					@include mobile {
+						opacity: 1;
+					}
 					@include button;
 				}
 			}

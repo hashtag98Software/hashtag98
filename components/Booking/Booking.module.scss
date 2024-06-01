@@ -59,4 +59,78 @@
 			}
 		}
 	}
+	&__form {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding-left: 22px;
+		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+		border: 2px solid #d9d9d9;
+		border-radius: 30px;
+		border-bottom-left-radius: initial;
+		border-top-left-radius: initial;
+		@include mobile {
+			border-left: 2px solid #d9d9d9;
+			border-radius: 100px;
+		}
+		&__label {
+			display: flex;
+			align-items: center;
+			&__span {
+				color: #fff;
+				font-size: 20px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: normal;
+				margin-right: 4px;
+			}
+			&__input {
+				min-height: 24px;
+				width: 105px;
+				text-align: center;
+				font-size: 13px;
+				font-family: inherit;
+				border: none;
+				border-radius: 30px;
+				background: rgba(0, 0, 0, 0.37);
+				box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+				outline: none;
+				color: #e9e1e1;
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: normal;
+				@include mobile {
+					font-size: 16px;
+				}
+			}
+		}
+		&__button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 47px;
+			height: 47px;
+			margin-left: 4px;
+			background: rgba(21, 21, 21, 0.6);
+			border: 1px solid #fff;
+			box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+			border-radius: 50%;
+			color: #fff;
+			font-size: 20px;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			position: relative;
+			&:before {
+				content: 'GO';
+				filter: blur(1.5px);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: -1;
+			}
+		}
+	}
 }

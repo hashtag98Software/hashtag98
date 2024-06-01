@@ -7,18 +7,20 @@ import Hero from 'components/home/Hero/Hero'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Pagination, Autoplay } from 'swiper/modules'
 import Space from 'components/home/Space/Space'
-import RoomTypes from 'components/home/RoomTypes/RoomTypes'
+import RoomTypes from 'components/RoomTypes/RoomTypes'
 import Experiences from 'components/home/Experiences/Experiences'
 import Booking from 'components/Booking/Booking'
 import { Home } from 'utils/types/graphql/graphql'
 import Footer from 'components/Footer/Footer'
+import { useState } from 'react'
 
 const Component = ({ data }: { data: Home }) => {
+	const [hiddenBooking, setHiddenBooking] = useState(false)
 	const { spacesCollection } = data
 
 	return (
 		<main className={s.home}>
-			<div className={s.home__booking}>
+			<div className={`${s.home__booking} ${hiddenBooking && s.hidden}`}>
 				<Booking />
 			</div>
 			<div className={s.home__mobile}>
@@ -42,7 +44,15 @@ const Component = ({ data }: { data: Home }) => {
 							)
 					)}
 				</Swiper>
-				<Experiences />
+				{data.experiences1Collection?.items &&
+					data.experiences2Collection?.items &&
+					data.experiences3Collection?.items && (
+						<Experiences
+							experiences1={data.experiences1Collection?.items}
+							experiences2={data.experiences2Collection?.items}
+							experiences3={data.experiences3Collection?.items}
+						/>
+					)}
 				<Map className={s.home__map} />
 				<Footer />
 			</div>
@@ -58,6 +68,9 @@ const Component = ({ data }: { data: Home }) => {
 					modules={[Mousewheel, Pagination]}
 					allowTouchMove={false}
 					className={s.home__desktop__swiper}
+					onRealIndexChange={(swiper: any) =>
+						setHiddenBooking(swiper.realIndex === swiper.slides.length - 1)
+					}
 				>
 					<SwiperSlide>
 						<Hero data={data} />
@@ -76,7 +89,15 @@ const Component = ({ data }: { data: Home }) => {
 							)
 					)}
 					<SwiperSlide>
-						<Experiences />
+						{data.experiences1Collection?.items &&
+							data.experiences2Collection?.items &&
+							data.experiences3Collection?.items && (
+								<Experiences
+									experiences1={data.experiences1Collection?.items}
+									experiences2={data.experiences2Collection?.items}
+									experiences3={data.experiences3Collection?.items}
+								/>
+							)}
 					</SwiperSlide>
 					<SwiperSlide>
 						<Map className={s.home__map} />

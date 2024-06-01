@@ -11,6 +11,9 @@
 	position: relative;
 	overflow: hidden;
 	padding: 76px 82px;
+	@include height-mini {
+		padding-bottom: 160px;
+	}
 	@include mobile {
 		align-items: center;
 		justify-content: center;
@@ -63,6 +66,9 @@
 			font-style: normal;
 			font-weight: 600;
 			line-height: normal;
+			@include height-mini {
+				margin-bottom: 32px;
+			}
 			@include mobile {
 				margin-bottom: 32px;
 				font-weight: 400;

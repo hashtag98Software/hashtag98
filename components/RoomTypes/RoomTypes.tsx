@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import s from './RoomTypes.module.scss'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -6,7 +7,8 @@ import {
 	buttonAnimation,
 } from 'utils/helpers/framerMotionAnimations'
 import Link from 'next/link'
-import { Room, Rooms } from 'utils/types/graphql/graphql'
+import { Rooms } from 'utils/types/graphql/graphql'
+import { useMediaQuery } from 'hooks/useMediaQuery'
 
 const RoomTypes = ({ data }: { data: Rooms }) => {
 	const rooms = data.roomsCollection?.items || []
@@ -21,6 +23,7 @@ const RoomTypes = ({ data }: { data: Rooms }) => {
 	)
 	const currentTypeRooms = rooms.filter(room => room?.type === currentType)
 	const key = `${currentRoom?.mainDescription} ${currentType}`
+	const isMobile = useMediaQuery('(max-width: 1062px)')
 
 	const changeType = (type: string) => {
 		setCurrentType(type)
@@ -88,10 +91,12 @@ const RoomTypes = ({ data }: { data: Rooms }) => {
 								variants={{
 									offscreen: {
 										opacity: 0,
-										translateX: 100,
+										translateX: isMobile ? 0 : 100,
+										translateY: isMobile ? 100 : 0,
 									},
 									onscreen: {
 										opacity: 1,
+										translateY: 0,
 										translateX: 0,
 										transition: {
 											type: 'spring',

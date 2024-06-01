@@ -1,4 +1,3 @@
-import '../../../../../styles/components/CloudBedsWidget.scss'
 import { getRoomData, getRoomsSlugs } from 'lib/api'
 import Component from './Component'
 import { draftMode } from 'next/headers'

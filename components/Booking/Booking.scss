@@ -1,0 +1,17 @@
+.react-datepicker {
+	$border-radius: 20px;
+	border-radius: $border-radius;
+	border: none;
+	background: rgba(255, 255, 255, 0.9);
+	-webkit-backdrop-filter: saturate(180%) blur(5px);
+	backdrop-filter: saturate(180%) blur(5px);
+	& .react-datepicker__header {
+		border-top-left-radius: $border-radius;
+		border-top-right-radius: $border-radius;
+		background: transparent;
+	}
+	& .react-datepicker__day--in-selecting-range,
+	& .react-datepicker__day--in-range {
+		background: #000;
+	}
+}

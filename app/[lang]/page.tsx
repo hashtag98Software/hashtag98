@@ -1,5 +1,4 @@
 import './page.scss'
-import '../../styles/components/CloudBedsWidget.scss'
 import { notFound } from 'next/navigation'
 import Component from './Component'
 import { getHomeData } from 'lib/api'

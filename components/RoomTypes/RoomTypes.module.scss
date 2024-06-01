@@ -1,5 +1,5 @@
-@import '../../../styles/mixins/responsive';
-@import '../../../styles/mixins/button';
+@import '../../styles/mixins/responsive';
+@import '../../styles/mixins/button';
 
 .room_types {
 	width: 100%;
@@ -116,9 +116,9 @@
 				}
 				&__item {
 					border: 2px solid #fff;
-					width: max-content;
+					width: 150px;
 					min-height: 33px;
-					padding: 0 20px;
+					padding: 5px 20px;
 					border-radius: 30px;
 					background: rgba(190, 190, 190, 0.38);
 					color: #fff;

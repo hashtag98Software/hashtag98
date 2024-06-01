@@ -43,6 +43,33 @@ export const homeData = gql`
 						}
 					}
 				}
+				experiences1Collection {
+					items {
+						name
+						description
+						video {
+							url
+						}
+					}
+				}
+				experiences2Collection {
+					items {
+						name
+						description
+						video {
+							url
+						}
+					}
+				}
+				experiences3Collection {
+					items {
+						name
+						description
+						video {
+							url
+						}
+					}
+				}
 			}
 		}
 	}
@@ -200,6 +227,7 @@ export const roomsData = gql`
 					items {
 						type
 						mainDescription
+						slug
 						imagesCollection(limit: 1) {
 							items {
 								url

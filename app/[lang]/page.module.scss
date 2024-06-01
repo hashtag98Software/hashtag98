@@ -15,6 +15,15 @@
 			transform: translateX(-50%);
 			bottom: 112px;
 		}
+		@include height-mini {
+			bottom: 80px;
+		}
+		&.hidden {
+			display: none;
+			@include mobile {
+				display: initial;
+			}
+		}
 	}
 	&__map {
 		width: 100vw;

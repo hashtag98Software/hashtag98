@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import s from './Booking.module.scss'
@@ -7,6 +8,10 @@ import {
 	menuItemsAnimation,
 } from 'utils/helpers/framerMotionAnimations'
 import { MdOutlineKeyboardArrowUp } from 'react-icons/md'
+import DatePicker from 'react-datepicker'
+import { format, addDays, isAfter } from 'date-fns'
+import 'react-datepicker/dist/react-datepicker.css'
+import './Booking.scss'
 
 const Booking = () => {
 	const menuItems = [
@@ -19,8 +24,20 @@ const Booking = () => {
 		{ label: 'CONTÁCTANOS', link: '/contact' },
 	]
 	const [isOpen, setIsOpen] = useState(false)
+	type DateState = Date | null
+	const initialDate = new Date()
+	const formatString = 'yyyy-MM-dd'
+	const [startDate, setStartDate] = useState<DateState>(initialDate)
+	const [endDate, setEndDate] = useState<DateState>(addDays(initialDate, 1))
+	const formatStartDay = startDate && format(startDate, formatString)
+	const formatEndDate = endDate && format(endDate, formatString)
+	const [currentInputSelected, setCurrentInputSelected] = useState<
+		'start' | 'end' | null
+	>(null)
 
 	const toggleMenu = () => setIsOpen(!isOpen)
+
+	const onClickOutside = () => setCurrentInputSelected(null)
 
 	return (
 		<div className={s.booking}>
@@ -64,12 +81,57 @@ const Booking = () => {
 					)}
 				</AnimatePresence>
 			</div>
-			<div
-				dangerouslySetInnerHTML={{
-					__html:
-						'<script src="https://hotels.cloudbeds.com/widget/load/KpLlBr/horiz?newWindow=1"></script>',
-				}}
-			></div>
+			<div className={s.booking__form}>
+				<label className={s.booking__form__label}>
+					<span className={s.booking__form__label__span}>IN</span>
+					<DatePicker
+						selected={startDate}
+						onChange={date => {
+							setStartDate(date)
+							setCurrentInputSelected('end')
+							if (date && endDate && isAfter(date, endDate)) {
+								setEndDate(addDays(date, 1))
+							}
+						}}
+						onFocus={() => setCurrentInputSelected('start')}
+						open={currentInputSelected === 'start'}
+						onClickOutside={onClickOutside}
+						selectsStart
+						startDate={startDate}
+						endDate={endDate}
+						showDisabledMonthNavigation
+						minDate={initialDate}
+						className={s.booking__form__label__input}
+					/>
+				</label>
+				<label className={s.booking__form__label}>
+					<span className={s.booking__form__label__span}>OUT</span>
+					<DatePicker
+						selected={endDate}
+						onChange={date => {
+							setEndDate(date)
+							setCurrentInputSelected(null)
+						}}
+						onFocus={() => setCurrentInputSelected('end')}
+						open={currentInputSelected === 'end'}
+						onClickOutside={onClickOutside}
+						selectsEnd
+						startDate={startDate}
+						endDate={endDate}
+						minDate={startDate}
+						showDisabledMonthNavigation
+						className={s.booking__form__label__input}
+					/>
+				</label>
+				<a
+					href={`https://hotels.cloudbeds.com/en/reservation/KpLlBr?checkin=${formatStartDay}&checkout=${formatEndDate}`}
+					target="_blank"
+					rel="noopener noreferrer"
+					className={s.booking__form__button}
+				>
+					GO
+				</a>
+			</div>
 		</div>
 	)
 }

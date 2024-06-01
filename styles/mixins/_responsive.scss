@@ -8,3 +8,9 @@
 		@content;
 	}
 }
+
+@mixin height-mini {
+	@media only screen and (max-height: 780px) and (min-width: 1062px) {
+		@content;
+	}
+}

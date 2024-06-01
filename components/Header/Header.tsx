@@ -7,7 +7,6 @@ import {
 	animationOnScreenContainer,
 	menuItemsAnimation,
 } from 'utils/helpers/framerMotionAnimations'
-import { useParams } from 'next/navigation'
 
 const Header = () => {
 	const menuItems = [
@@ -21,7 +20,6 @@ const Header = () => {
 	]
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-	const params = useParams<{ lang: string }>()
 
 	return (
 		<header className={s.header}>
@@ -38,7 +36,9 @@ const Header = () => {
 								variants={menuItemsAnimation(i)}
 								{...animationOnScreenContainer}
 							>
-								<Link href={item.link}>{item.label}</Link>
+								<Link href={item.link} onClick={toggleMenu}>
+									{item.label}
+								</Link>
 							</motion.li>
 						))}
 					</ul>
@@ -99,12 +99,12 @@ const Header = () => {
 						</Link>
 					</li>
 					<li>
-						<Link className={s.header__nav__list__item} href="/">
+						<Link className={s.header__nav__list__item} href="/rooms">
 							HABITACIONES
 						</Link>
 					</li>
 					<li>
-						<Link className={s.header__nav__list__item} href="/">
+						<Link className={s.header__nav__list__item} href="/experiences">
 							EXPERIENCIAS
 						</Link>
 					</li>

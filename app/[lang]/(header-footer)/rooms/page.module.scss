@@ -1,0 +1,10 @@
+.rooms {
+	position: relative;
+	&__booking {
+		position: absolute;
+		left: 50%;
+		bottom: 80px;
+		transform: translateX(-50%);
+		z-index: 2;
+	}
+}
