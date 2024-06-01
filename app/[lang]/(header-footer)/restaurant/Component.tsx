@@ -10,7 +10,13 @@ const Component = ({ data }: { data: Restaurant }) => {
 			<section className={s.restaurant__hero}>
 				{data.logo?.url && <img src={data.logo?.url} alt="Logo" />}
 				{data.video?.url && (
-					<video autoPlay muted loop className={s.restaurant__hero__video}>
+					<video
+						autoPlay
+						muted
+						loop
+						playsInline
+						className={s.restaurant__hero__video}
+					>
 						<source src={data.video?.url} type="video/mp4" />
 						Your browser does not support HTML5 video.
 					</video>

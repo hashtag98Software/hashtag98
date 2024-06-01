@@ -1,4 +1,4 @@
-import { SVGProps, useState } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import s from './Booking.module.scss'
 import Link from 'next/link'

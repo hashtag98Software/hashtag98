@@ -104,7 +104,13 @@ const Component = ({ data }: { data: Room }) => {
 					/>
 				)}
 				{data.video?.url && (
-					<video autoPlay muted loop className={s.room__hero__video}>
+					<video
+						autoPlay
+						muted
+						loop
+						playsInline
+						className={s.room__hero__video}
+					>
 						<source src={data.video.url} type="video/mp4" />
 						Your browser does not support HTML5 video.
 					</video>

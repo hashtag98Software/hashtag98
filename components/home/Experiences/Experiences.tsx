@@ -138,6 +138,7 @@ const ExperienceSection = ({
 							autoPlay
 							muted
 							loop
+							playsInline
 							id="myVideo"
 							className={s.experiences__swiper__container__video}
 						>

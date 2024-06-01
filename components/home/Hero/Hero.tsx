@@ -3,7 +3,7 @@ import s from './Hero.module.scss'
 
 const Hero = ({ data }: { data: Home }) => {
 	return (
-		<video autoPlay muted loop className={s.hero}>
+		<video autoPlay muted loop playsInline className={s.hero}>
 			{data.videoMobile?.url && (
 				<source
 					src={data.videoMobile.url}
