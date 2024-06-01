@@ -172,6 +172,7 @@ const Component = ({ data }: { data: Room }) => {
 						</div>
 						{room?.video?.url && (
 							<video
+								playsInline
 								autoPlay
 								muted
 								loop
