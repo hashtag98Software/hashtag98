@@ -8,7 +8,7 @@ import {
 } from 'utils/helpers/framerMotionAnimations'
 import Link from 'next/link'
 import { Rooms } from 'utils/types/graphql/graphql'
-import { useMediaQuery } from 'hooks/useMediaQuery'
+import { useMediaQuery } from 'usehooks-ts'
 
 const RoomTypes = ({ data }: { data: Rooms }) => {
 	const rooms = data.roomsCollection?.items || []
