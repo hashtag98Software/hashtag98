@@ -173,7 +173,7 @@ const Component = ({ data }: { data: Room }) => {
 						{room?.imagesCollection?.items[0]?.url && (
 							<img
 								src={room.imagesCollection.items[0].url}
-								alt={`${room.type} - ${room.mainDescription}`}
+								alt={`${room.type} -  ${room.mainDescription}`}
 								className={s.room__more_types__item__img}
 							/>
 						)}
