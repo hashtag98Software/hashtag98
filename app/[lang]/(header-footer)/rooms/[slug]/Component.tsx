@@ -5,10 +5,13 @@ import s from './page.module.scss'
 import Link from 'next/link'
 import { Room } from 'utils/types/graphql/graphql'
 import { IoSearchSharp } from 'react-icons/io5'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Booking from 'components/Booking/Booking'
+import { useInView } from 'framer-motion'
 
 const Component = ({ data }: { data: Room }) => {
+	const ref = useRef(null)
+	const isInView = useInView(ref)
 	const [isOpenAttributes, setIsOpenAttributes] = useState(false)
 	const attributesIcons = {
 		Wifi: '/img/wifi.png',
@@ -21,12 +24,18 @@ const Component = ({ data }: { data: Room }) => {
 
 	const toggleAttributes = () => setIsOpenAttributes(!isOpenAttributes)
 
+	useEffect(() => {
+		if (!isInView) {
+			setIsOpenAttributes(false)
+		}
+	}, [isInView])
+
 	return (
 		<main>
 			<div className={s.room__booking}>
 				<Booking />
 			</div>
-			<section className={s.room__hero}>
+			<section className={s.room__hero} ref={ref}>
 				<div className={s.room__hero__content}>
 					<h1 className={s.room__hero__content__title}>
 						HABITACIÓN {data.type}
@@ -173,7 +182,7 @@ const Component = ({ data }: { data: Room }) => {
 						{room?.imagesCollection?.items[0]?.url && (
 							<img
 								src={room.imagesCollection.items[0].url}
-								alt={`${room.type} -  ${room.mainDescription}`}
+								alt={`${room.type} - ${room.mainDescription}`}
 								className={s.room__more_types__item__img}
 							/>
 						)}

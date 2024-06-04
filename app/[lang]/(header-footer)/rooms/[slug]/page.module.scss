@@ -8,6 +8,9 @@
 		bottom: 95px;
 		transform: translateX(-50%);
 		z-index: 2;
+		@include mobile {
+			bottom: 50px;
+		}
 	}
 	&__hero {
 		position: relative;
@@ -64,6 +67,9 @@
 					&.active {
 						transform: rotate(180deg);
 					}
+				}
+				@include mobile {
+					margin-top: 80px;
 				}
 			}
 		}
