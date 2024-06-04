@@ -13,7 +13,7 @@
 		@include mobile {
 			left: 50%;
 			transform: translateX(-50%);
-			bottom: 112px;
+			bottom: 80px !important;
 		}
 		@include height-mini {
 			bottom: 80px;

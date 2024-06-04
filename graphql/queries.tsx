@@ -8,10 +8,7 @@ export const homeData = gql`
 					title
 					description
 				}
-				videoDesktop {
-					url
-				}
-				videoMobile {
+				video {
 					url
 				}
 				rooms {
@@ -47,7 +44,7 @@ export const homeData = gql`
 					items {
 						name
 						description
-						video {
+						imagePreview {
 							url
 						}
 					}
@@ -56,7 +53,7 @@ export const homeData = gql`
 					items {
 						name
 						description
-						video {
+						imagePreview {
 							url
 						}
 					}
@@ -65,7 +62,7 @@ export const homeData = gql`
 					items {
 						name
 						description
-						video {
+						imagePreview {
 							url
 						}
 					}
@@ -208,8 +205,10 @@ export const roomData = gql`
 					items {
 						type
 						slug
-						video {
-							url
+						imagesCollection(limit: 1) {
+							items {
+								url
+							}
 						}
 					}
 				}

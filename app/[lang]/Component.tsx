@@ -24,7 +24,7 @@ const Component = ({ data }: { data: Home }) => {
 				<Booking />
 			</div>
 			<div className={s.home__mobile}>
-				<Hero data={data} />
+				<Hero video={data?.video?.url} />
 				{data.rooms && <RoomTypes data={data.rooms} />}
 				<Swiper
 					id="home-slider-mobile"
@@ -73,7 +73,7 @@ const Component = ({ data }: { data: Home }) => {
 					}
 				>
 					<SwiperSlide>
-						<Hero data={data} />
+						<Hero video={data?.video?.url} />
 					</SwiperSlide>
 					{data.rooms && (
 						<SwiperSlide>

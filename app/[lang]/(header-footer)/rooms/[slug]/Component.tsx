@@ -170,17 +170,12 @@ const Component = ({ data }: { data: Room }) => {
 								VER MÁS
 							</Link>
 						</div>
-						{room?.video?.url && (
-							<video
-								playsInline
-								autoPlay
-								muted
-								loop
-								className={s.room__more_types__item__video}
-							>
-								<source src={room?.video?.url} type="video/mp4" />
-								Your browser does not support HTML5 video.
-							</video>
+						{room?.imagesCollection?.items[0]?.url && (
+							<img
+								src={room.imagesCollection.items[0].url}
+								alt={`${room.type} - ${room.mainDescription}`}
+								className={s.room__more_types__item__img}
+							/>
 						)}
 					</div>
 				))}

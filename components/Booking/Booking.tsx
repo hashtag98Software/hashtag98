@@ -102,6 +102,7 @@ const Booking = () => {
 						showDisabledMonthNavigation
 						minDate={initialDate}
 						className={s.booking__form__label__input}
+						readOnly
 					/>
 				</label>
 				<label className={s.booking__form__label}>
@@ -121,6 +122,7 @@ const Booking = () => {
 						minDate={startDate}
 						showDisabledMonthNavigation
 						className={s.booking__form__label__input}
+						readOnly
 					/>
 				</label>
 				<a

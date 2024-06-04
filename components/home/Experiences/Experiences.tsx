@@ -82,18 +82,12 @@ const ExperienceSection = ({
 								VER MÁS
 							</Link>
 						</motion.div>
-						{experience?.video?.url && (
-							<video
-								autoPlay
-								muted
-								loop
-								playsInline
-								id="myVideo"
-								className={s.experiences__swiper__container__video}
-							>
-								<source src={experience.video?.url} type="video/mp4" />
-								Your browser does not support HTML5 video.
-							</video>
+						{experience?.imagePreview?.url && (
+							<img
+								src={experience.imagePreview.url}
+								alt={experience.name || ''}
+								className={s.experiences__swiper__container__img}
+							/>
 						)}
 					</div>
 				</SwiperSlide>
