@@ -10,7 +10,7 @@ import {
 
 const Header = () => {
 	const menuItems = [
-		{ label: 'HOTEL', link: '/' },
+		{ label: 'INICIO', link: '/' },
 		{ label: 'HABITACIONES', link: '/rooms' },
 		{ label: 'AMENA', link: '/restaurant' },
 		{ label: 'INZOLENTE', link: '/rooftop' },

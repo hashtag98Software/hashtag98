@@ -24,7 +24,7 @@ const Experiences = ({
 	)
 }
 
-const ExperienceSection = ({
+export const ExperienceSection = ({
 	experiences,
 }: {
 	experiences: Maybe<Experience>[]

@@ -8,7 +8,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Pagination, Autoplay } from 'swiper/modules'
 import Space from 'components/home/Space/Space'
 import RoomTypes from 'components/RoomTypes/RoomTypes'
-import Experiences from 'components/home/Experiences/Experiences'
+import Experiences, {
+	ExperienceSection,
+} from 'components/home/Experiences/Experiences'
 import Booking from 'components/Booking/Booking'
 import { Home } from 'utils/types/graphql/graphql'
 import Footer from 'components/Footer/Footer'
@@ -47,11 +49,15 @@ const Component = ({ data }: { data: Home }) => {
 				{data.experiences1Collection?.items &&
 					data.experiences2Collection?.items &&
 					data.experiences3Collection?.items && (
-						<Experiences
-							experiences1={data.experiences1Collection?.items}
-							experiences2={data.experiences2Collection?.items}
-							experiences3={data.experiences3Collection?.items}
-						/>
+						<div className={`${s.home__mobile__experiences} experiences`}>
+							<ExperienceSection
+								experiences={[
+									...data.experiences1Collection?.items,
+									...data.experiences2Collection?.items,
+									...data.experiences3Collection?.items,
+								]}
+							/>
+						</div>
 					)}
 				<Map className={s.home__map} />
 				<Footer />
