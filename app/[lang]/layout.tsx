@@ -37,6 +37,7 @@ export default function RootLayout({
 					<Header />
 					{children}
 				</ContentfulPreviewProvider>
+				<div id="experience-popup" />
 			</body>
 		</html>
 	)

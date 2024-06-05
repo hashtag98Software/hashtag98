@@ -47,6 +47,11 @@ export const homeData = gql`
 						imagePreview {
 							url
 						}
+						video {
+							url
+						}
+						phone
+						address
 					}
 				}
 				experiences2Collection {
@@ -56,6 +61,11 @@ export const homeData = gql`
 						imagePreview {
 							url
 						}
+						video {
+							url
+						}
+						phone
+						address
 					}
 				}
 				experiences3Collection {
@@ -65,6 +75,11 @@ export const homeData = gql`
 						imagePreview {
 							url
 						}
+						video {
+							url
+						}
+						phone
+						address
 					}
 				}
 			}
