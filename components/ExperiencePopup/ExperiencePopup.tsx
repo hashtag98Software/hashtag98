@@ -19,19 +19,20 @@ const ExperiencePopup = ({
 				<button className={s.experience_popup__content__close} onClick={close}>
 					X
 				</button>
-				<video
-					controls
-					playsInline
-					className={s.experience_popup__content__video}
-				>
-					{experience?.video?.url && (
+				{experience?.video?.url && (
+					<video
+						controls
+						playsInline
+						muted
+						className={s.experience_popup__content__video}
+					>
 						<source src={experience?.video?.url} type="video/mp4" />
-					)}
-					Your browser does not support HTML5 video.
-				</video>
-				<h2 className={s.experience_popup__content__title}>
+						Your browser does not support HTML5 video.
+					</video>
+				)}
+				<h3 className={s.experience_popup__content__title}>
 					{experience?.name}
-				</h2>
+				</h3>
 				<p className={s.experience_popup__content__text}>
 					{experience?.description}
 				</p>

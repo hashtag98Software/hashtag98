@@ -62,11 +62,7 @@
 					width: max-content;
 					min-height: 39px;
 					padding: 0 40px;
-					opacity: 0;
 					background: none;
-					@include mobile {
-						opacity: 1;
-					}
 					@include button;
 				}
 			}

@@ -9,6 +9,7 @@ import {
 import Link from 'next/link'
 import { Rooms } from 'utils/types/graphql/graphql'
 import { useMediaQuery } from 'usehooks-ts'
+import { mobile } from 'utils/helpers/mediaQueries'
 
 const RoomTypes = ({ data }: { data: Rooms }) => {
 	const rooms = data.roomsCollection?.items || []
@@ -23,7 +24,7 @@ const RoomTypes = ({ data }: { data: Rooms }) => {
 	)
 	const currentTypeRooms = rooms.filter(room => room?.type === currentType)
 	const key = `${currentRoom?.mainDescription} ${currentType}`
-	const isMobile = useMediaQuery('(max-width: 1062px)')
+	const isMobile = useMediaQuery(mobile)
 
 	const changeType = (type: string) => {
 		setCurrentType(type)

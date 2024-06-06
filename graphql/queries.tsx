@@ -34,7 +34,11 @@ export const homeData = gql`
 						titleTop
 						titleBottom
 						description
+						mobileDescription
 						link
+						mobileImage {
+							url
+						}
 						image {
 							url
 						}
@@ -247,6 +251,34 @@ export const roomsData = gql`
 								url
 							}
 						}
+					}
+				}
+			}
+		}
+	}
+`
+
+export const experiencesData = gql`
+	query ExperiencesData($locale: String) {
+		experiencesPageCollection(limit: 1, locale: $locale) {
+			items {
+				title
+				subTitle
+				video {
+					url
+				}
+				experiencesCollection {
+					items {
+						image {
+							url
+						}
+						video {
+							url
+						}
+						name
+						description
+						phone
+						address
 					}
 				}
 			}

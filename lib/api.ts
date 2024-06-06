@@ -1,6 +1,7 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import {
 	contactData,
+	experiencesData,
 	homeData,
 	legalData,
 	restaurantData,
@@ -12,6 +13,7 @@ import {
 import { getGqlString } from 'utils/helpers/getGqlString'
 import {
 	Contact,
+	ExperiencesPage,
 	Home,
 	LegalDataQuery,
 	Restaurant,
@@ -128,4 +130,14 @@ export const getRoomsData = async ({ preview, locale }: GetData) => {
 	})
 
 	return response.data.roomsCollection.items[0] as Rooms
+}
+
+export const getExperiencesData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: experiencesData,
+		preview,
+		variables: { locale },
+	})
+
+	return response.data.experiencesPageCollection.items[0] as ExperiencesPage
 }

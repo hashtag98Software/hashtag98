@@ -10,6 +10,8 @@ import {
 	useContentfulInspectorMode,
 	useContentfulLiveUpdates,
 } from '@contentful/live-preview/react'
+import { useMediaQuery } from 'usehooks-ts'
+import { mobile } from 'utils/helpers/mediaQueries'
 
 type Props = {
 	data: HotelPlace
@@ -17,11 +19,19 @@ type Props = {
 const Space = ({ data }: Props) => {
 	const updatedData = useContentfulLiveUpdates(data)
 	const inspectorProps = useContentfulInspectorMode({ entryId: data.sys.id })
+	const isMobile = useMediaQuery(mobile)
+	const bg =
+		isMobile && updatedData.mobileImage?.url
+			? updatedData.mobileImage?.url
+			: updatedData.image?.url
+
+	console.log({ isMobile })
+	console.log(updatedData.mobileImage?.url)
 
 	return (
 		<section className={s.space}>
 			<motion.div
-				key={updatedData.image?.url}
+				key={bg}
 				variants={{
 					offscreen: {
 						scale: 1.5,
@@ -35,7 +45,7 @@ const Space = ({ data }: Props) => {
 				}}
 				{...animationOnScreenContainer}
 				className={s.space__background}
-				style={{ backgroundImage: `url(${updatedData.image?.url})` }}
+				style={{ backgroundImage: `url(${bg})` }}
 			></motion.div>
 			<motion.div
 				className={s.space__content}
@@ -47,6 +57,7 @@ const Space = ({ data }: Props) => {
 						{...inspectorProps({
 							fieldId: 'titleTop',
 						})}
+						className={s.space__content__title__top}
 					>
 						{updatedData.titleTop}
 					</span>
@@ -66,6 +77,14 @@ const Space = ({ data }: Props) => {
 					})}
 				>
 					{updatedData.description}
+				</p>
+				<p
+					className={s.space__content__description_mobile}
+					{...inspectorProps({
+						fieldId: 'mobileDescription',
+					})}
+				>
+					{updatedData.mobileDescription}
 				</p>
 				{updatedData.link && (
 					<Link
