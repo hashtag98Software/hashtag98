@@ -1,11 +1,14 @@
 'use client'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'photoswipe/dist/photoswipe.css'
 import { Rooftop } from 'utils/types/graphql/graphql'
 import s from './page.module.scss'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { Gallery, Item } from 'react-photoswipe-gallery'
+import { IoSearchSharp } from 'react-icons/io5'
 
 const Component = ({ data }: { data: Rooftop }) => {
 	return (
@@ -35,6 +38,43 @@ const Component = ({ data }: { data: Rooftop }) => {
 				>
 					{data.buttonText}
 				</a>
+				<div className={s.rooftop__content__gallery}>
+					<Gallery>
+						{data.imagesGalleryCollection?.items.map(
+							(img, index) =>
+								img?.url && (
+									<Item
+										original={img.url}
+										thumbnail={img.url}
+										width={img.width || undefined}
+										height={img.height || undefined}
+										key={img.url}
+									>
+										{({ ref, open }) =>
+											index < 4 ? (
+												<div className={s.gallery__item}>
+													<div className={s.gallery__item__content}>
+														<IoSearchSharp size={32} />
+													</div>
+													{img.url && (
+														<img
+															ref={ref}
+															onClick={open}
+															src={img.url}
+															alt={`Restaurant - ${index + 1}`}
+															className={s.gallery__item__img}
+														/>
+													)}
+												</div>
+											) : (
+												<div ref={ref} style={{ display: 'none' }} />
+											)
+										}
+									</Item>
+								)
+						)}
+					</Gallery>
+				</div>
 				{data.imagesCollection?.items?.length && (
 					<Swiper
 						slidesPerView={4}

@@ -1,3 +1,6 @@
+@import '../../../../styles/mixins/responsive';
+@import '../../../../styles/mixins/gallery';
+
 .restaurant {
 	&__hero {
 		min-height: 100vh;
@@ -5,6 +8,11 @@
 		justify-content: center;
 		align-items: center;
 		position: relative;
+		&__img {
+			@include mobile {
+				width: 129px;
+			}
+		}
 		&__video {
 			position: absolute;
 			top: 0;
@@ -24,11 +32,15 @@
 		justify-content: center;
 		padding: 2rem;
 		color: #4c3d20;
+		text-align: center;
 		&__title {
 			font-size: 50px;
 			font-style: normal;
 			font-weight: 600;
 			line-height: normal;
+			@include mobile {
+				font-size: 2rem;
+			}
 		}
 		&__text {
 			text-align: center;
@@ -37,59 +49,110 @@
 			font-weight: 500;
 			line-height: normal;
 			max-width: 800px;
+			@include mobile {
+				font-size: 1rem;
+			}
 		}
 	}
-	&__image {
-		width: 100%;
-		vertical-align: top;
+	&__gallery {
+		@include gallery2;
 	}
 	&__info {
 		background: #d9d9d9;
-		padding-top: 97px;
-		padding-bottom: 53px;
-		&__buttons {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 48px;
-			&__item {
+		padding-top: 105px;
+		padding-bottom: 94px;
+		@include mobile {
+			padding-top: 59px;
+			padding-bottom: 42px;
+		}
+		&__content {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			place-items: center;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 2rem;
+			margin-bottom: 94px;
+			@include mobile {
+				gap: 59px;
+				margin-bottom: 39px;
+			}
+			@include mobile {
 				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 0 44px;
-				padding-left: 200px;
-				min-height: 93px;
+				flex-direction: column-reverse;
+				padding: initial;
+			}
+			&__video {
+				width: 100%;
+				max-width: 607px;
+				height: 944px;
+				object-fit: cover;
 				border-radius: 30px;
-				background: #d69439;
-				box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-				color: #fff;
-				text-align: center;
-				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-				font-size: 48px;
-				font-style: normal;
-				font-weight: 800;
-				line-height: normal;
-				position: relative;
-				&__img {
-					position: absolute;
-					top: 50%;
-					left: -1rem;
-					transform: translateY(-50%);
+				@include mobile {
+					border-radius: initial;
+					max-width: initial;
+					height: 705px;
+					grid-row: 2 / 3;
 				}
 			}
-		}
-		&__images {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 24px;
-			width: max-content;
-			margin: 0 auto;
-			margin-top: 82px;
-			margin-bottom: 27px;
-			&__item {
-				&:first-of-type,
-				&:last-of-type {
-					margin-top: 36px;
+			&__buttons {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 141px;
+				@include mobile {
+					gap: 61px;
+				}
+				&__item {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 0 44px;
+					padding-left: 200px;
+					width: 100%;
+					max-width: 525px;
+					min-height: 93px;
+					border-radius: 30px;
+					background: #d69439;
+					box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+					color: #fff;
+					text-align: center;
+					text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+					font-size: 48px;
+					font-style: normal;
+					font-weight: 800;
+					line-height: normal;
+					position: relative;
+					@include mobile {
+						font-size: 28px;
+						border-radius: 30px;
+						min-height: 60px;
+						padding-left: 150px;
+					}
+					&.two {
+						@include mobile {
+							padding-left: 44px;
+							padding-right: 150px;
+						}
+						& .restaurant__info__content__buttons__item__img {
+							@include mobile {
+								left: initial;
+								right: -1rem;
+							}
+						}
+					}
+					&__img {
+						position: absolute;
+						top: 50%;
+						left: -1rem;
+						transform: translateY(-50%);
+						@include mobile {
+							width: 145px;
+							height: 145px;
+						}
+					}
 				}
 			}
 		}
@@ -101,6 +164,9 @@
 			line-height: normal;
 			text-align: center;
 			margin-bottom: 8px;
+			@include mobile {
+				font-size: 2rem;
+			}
 		}
 		&__text2 {
 			color: #4c3d20;
@@ -109,6 +175,44 @@
 			font-style: normal;
 			font-weight: 500;
 			line-height: normal;
+			@include mobile {
+				font-size: 1rem;
+			}
+		}
+		&__images {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 24px;
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			margin-top: 82px;
+			margin-bottom: 27px;
+			padding: 0 2rem;
+			@include mobile {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 25px;
+				margin-bottom: initial;
+			}
+			&__item {
+				width: 100%;
+				@include mobile {
+					width: 40vw;
+				}
+				&:first-of-type,
+				&:last-of-type {
+					margin-top: 36px;
+					@include mobile {
+						margin-top: initial;
+					}
+				}
+				&:last-of-type {
+					@include mobile {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 }

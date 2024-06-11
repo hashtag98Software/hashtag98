@@ -139,17 +139,19 @@ export const restaurantData = gql`
 				video {
 					url
 				}
-				imageDesktop {
-					title
-					url
+				imagesCollection {
+					items {
+						url
+						width
+						height
+					}
 				}
-				imageMobile {
-					title
+				video2 {
 					url
 				}
 				button1Text
 				button2Text
-				imagesCollection {
+				postImagesCollection {
 					items {
 						url
 						width
@@ -177,6 +179,13 @@ export const rooftopData = gql`
 					url
 				}
 				buttonText
+				imagesGalleryCollection {
+					items {
+						url
+						width
+						height
+					}
+				}
 				imagesCollection {
 					items {
 						url

@@ -142,8 +142,8 @@ const Component = ({ data }: { data: Room }) => {
 								>
 									{({ ref, open }) =>
 										index < 4 ? (
-											<div className={s.room__gallery__item}>
-												<div className={s.room__gallery__item__content}>
+											<div className={s.gallery__item}>
+												<div className={s.gallery__item__content}>
 													<IoSearchSharp size={32} />
 												</div>
 												{img.url && (
@@ -152,7 +152,7 @@ const Component = ({ data }: { data: Room }) => {
 														onClick={open}
 														src={img.url}
 														alt={`${data.type} - ${data.mainDescription}`}
-														className={s.room__gallery__item__img}
+														className={s.gallery__item__img}
 													/>
 												)}
 											</div>
