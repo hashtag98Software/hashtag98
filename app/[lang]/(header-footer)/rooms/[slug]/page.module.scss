@@ -150,6 +150,12 @@
 	}
 	&__gallery {
 		@include gallery;
+		@include mobile {
+			& .gallery__item {
+				grid-column: span 1 !important;
+				grid-row: span 1 !important;
+			}
+		}
 	}
 	&__more_types {
 		display: grid;

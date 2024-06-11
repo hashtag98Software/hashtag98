@@ -10,9 +10,9 @@
 	@include mobile {
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: initial;
-		& .gallery__item {
-			grid-column: span 1 !important;
-			grid-row: span 1 !important;
+		& .gallery__item:nth-child(1) {
+			grid-column: span 1;
+			grid-row: span 1;
 		}
 	}
 	& .gallery__item {
@@ -67,7 +67,7 @@
 	@include mobile {
 		grid-template-rows: 1fr 1fr 1fr;
 	}
-	&__item {
+	& .gallery__item {
 		&:nth-child(1) {
 			grid-column: span 3;
 			grid-row: span 2;
