@@ -78,7 +78,7 @@ const RoomTypes = ({ data }: { data: Rooms }) => {
 						href={`/rooms/${currentRoom?.slug}`}
 						className={s.room_types__content__button}
 					>
-						VER MÁS
+						{data.button}
 					</Link>
 				</motion.div>
 			</AnimatePresence>
