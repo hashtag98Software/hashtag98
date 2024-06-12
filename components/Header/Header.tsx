@@ -30,9 +30,6 @@ const Header = () => {
 
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
-	console.log({ lang, pathnameWithoutLang, pathname })
-	console.log(lang === 'es' ? `/en${pathnameWithoutLang}` : pathnameWithoutLang)
-
 	return (
 		<header className={s.header}>
 			<div className={`${s.header__menu} ${isMenuOpen && s.open}`}>
@@ -95,7 +92,9 @@ const Header = () => {
 				<NextLink
 					className={s.header__left__lang}
 					href={
-						lang === 'es' ? `/en${pathnameWithoutLang}` : pathnameWithoutLang
+						lang === 'es'
+							? `/en${pathnameWithoutLang}`
+							: pathnameWithoutLang || '/'
 					}
 				>
 					{lang === 'es' ? 'EN' : 'ES'}
