@@ -1,11 +1,11 @@
 'use client'
 import { Restaurant } from 'utils/types/graphql/graphql'
 import s from './page.module.scss'
-import { Abhaya_Libre } from 'next/font/google'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import { IoSearchSharp } from 'react-icons/io5'
 import 'photoswipe/dist/photoswipe.css'
 import { useScroll, useSpring, motion, useTransform } from 'framer-motion'
+import { Abhaya_Libre } from 'next/font/google'
 
 const Abhaya = Abhaya_Libre({ subsets: ['latin'], weight: '600' })
 

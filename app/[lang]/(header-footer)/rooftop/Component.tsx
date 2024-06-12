@@ -1,6 +1,7 @@
 'use client'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import './page.scss'
 import 'photoswipe/dist/photoswipe.css'
 import { Rooftop } from 'utils/types/graphql/graphql'
 import s from './page.module.scss'
@@ -9,13 +10,22 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import { IoSearchSharp } from 'react-icons/io5'
+import { Kameron } from 'next/font/google'
+
+const KameronFont = Kameron({ subsets: ['latin'], weight: '600' })
 
 const Component = ({ data }: { data: Rooftop }) => {
 	return (
 		<main>
 			<section className={s.rooftop__hero}>
-				{data.logoHero?.url && <img src={data.logoHero?.url} alt="Logo" />}
-				{data.video?.url && (
+				{data.logoHero?.url && (
+					<img
+						src={data.logoHero?.url}
+						alt="Logo"
+						className={s.rooftop__hero__logo}
+					/>
+				)}
+				{data.videoHero?.url && (
 					<video
 						autoPlay
 						muted
@@ -23,21 +33,54 @@ const Component = ({ data }: { data: Rooftop }) => {
 						playsInline
 						className={s.rooftop__hero__video}
 					>
-						<source src={data.video?.url} type="video/mp4" />
+						<source src={data.videoHero?.url} type="video/mp4" />
 						Your browser does not support HTML5 video.
 					</video>
 				)}
 			</section>
 			<section className={s.rooftop__content}>
-				{data.logoBlack?.url && <img src={data.logoBlack?.url} alt="Logo" />}
-				<a
-					href="http://"
-					target="_blank"
-					rel="noopener noreferrer"
-					className={s.rooftop__content__button}
+				<p
+					className={`${s.rooftop__content__message1} ${KameronFont.className}`}
 				>
-					{data.buttonText}
-				</a>
+					{data.message1}
+				</p>
+				<div className={s.rooftop__content__info}>
+					<div className={s.rooftop__content__info__buttons}>
+						<a
+							href="https://assets.ctfassets.net/9q4if916fz49/2SqsuzOlp1T44ktmvMOkgY/946d93805858b496d00bafacaa24b4a0/carta_inzolente_actualizada_2.pdf"
+							target="_blank"
+							rel="noopener noreferrer"
+							className={s.rooftop__content__info__buttons__item}
+						>
+							{data.buttonText}
+						</a>
+						<a
+							href="https://assets.ctfassets.net/9q4if916fz49/2SqsuzOlp1T44ktmvMOkgY/946d93805858b496d00bafacaa24b4a0/carta_inzolente_actualizada_2.pdf"
+							target="_blank"
+							rel="noopener noreferrer"
+							className={s.rooftop__content__info__buttons__item}
+						>
+							{data.buttonText2}
+						</a>
+					</div>
+					{data.video?.url && (
+						<video
+							autoPlay
+							muted
+							loop
+							playsInline
+							className={s.rooftop__content__info__video}
+						>
+							<source src={data.video?.url} type="video/mp4" />
+							Your browser does not support HTML5 video.
+						</video>
+					)}
+				</div>
+				<p
+					className={`${s.rooftop__content__message2} ${KameronFont.className}`}
+				>
+					{data.message2}
+				</p>
 				<div className={s.rooftop__content__gallery}>
 					<Gallery>
 						{data.imagesGalleryCollection?.items.map(
@@ -75,9 +118,14 @@ const Component = ({ data }: { data: Rooftop }) => {
 						)}
 					</Gallery>
 				</div>
+				<p
+					className={`${s.rooftop__content__message3} ${KameronFont.className}`}
+				>
+					{data.message3}
+				</p>
 				{data.imagesCollection?.items?.length && (
 					<Swiper
-						slidesPerView={4}
+						slidesPerView="auto"
 						spaceBetween={32}
 						centeredSlides={true}
 						initialSlide={2}
@@ -91,16 +139,36 @@ const Component = ({ data }: { data: Rooftop }) => {
 						{data.imagesCollection.items.map(
 							item =>
 								item?.url && (
-									<SwiperSlide key={item.url}>
+									<SwiperSlide
+										key={item.url}
+										className={s.rooftop__content__swiper__item}
+									>
 										<img
 											src={item.url}
 											alt="Image"
-											className={s.rooftop__content__swiper__item}
+											className={s.rooftop__content__swiper__item__img}
 										/>
 									</SwiperSlide>
 								)
 						)}
 					</Swiper>
+				)}
+				{data.imagesCollection?.items?.length && (
+					<div className={s.rooftop__content__images}>
+						{data.imagesCollection.items
+							.slice(0, 4)
+							.map(
+								item =>
+									item?.url && (
+										<img
+											src={item.url}
+											alt="Image"
+											className={s.rooftop__content__images__img}
+											key={item.url}
+										/>
+									)
+							)}
+					</div>
 				)}
 				<a
 					href={data.instagramUrl || '/'}
@@ -108,7 +176,7 @@ const Component = ({ data }: { data: Rooftop }) => {
 					rel="noopener noreferrer"
 					className={s.rooftop__content__social}
 				>
-					<FaInstagram size={100} />
+					<FaInstagram />
 					{data.instagramUsername}
 				</a>
 				<a
@@ -117,28 +185,58 @@ const Component = ({ data }: { data: Rooftop }) => {
 					rel="noopener noreferrer"
 					className={s.rooftop__content__social}
 				>
-					<FaFacebook size={100} />
+					<FaFacebook />
 					{data.facebookUsername}
 				</a>
 				<img
-					src="/img/top-left.png"
-					alt="Logo"
-					className={s.rooftop__content__img_top_left}
+					src="/img/rooftop/1.png"
+					alt="drinks"
+					className={s.rooftop__content__img_1}
 				/>
 				<img
-					src="/img/top-right.png"
-					alt="Logo"
-					className={s.rooftop__content__img_top_right}
+					src="/img/rooftop/2.png"
+					alt="drinks"
+					className={s.rooftop__content__img_2}
 				/>
 				<img
-					src="/img/bottom-left.png"
-					alt="Logo"
-					className={s.rooftop__content__img_bottom_left}
+					src="/img/rooftop/3.png"
+					alt="drinks"
+					className={s.rooftop__content__img_3}
 				/>
 				<img
-					src="/img/bottom-right.png"
-					alt="Logo"
-					className={s.rooftop__content__img_bottom_right}
+					src="/img/rooftop/4.png"
+					alt="drinks"
+					className={s.rooftop__content__img_4}
+				/>
+				<img
+					src="/img/rooftop/5.png"
+					alt="drinks"
+					className={s.rooftop__content__img_5}
+				/>
+				<img
+					src="/img/rooftop/6.png"
+					alt="drinks"
+					className={s.rooftop__content__img_6}
+				/>
+				<img
+					src="/img/rooftop/1_mobile.png"
+					alt="drinks"
+					className={s.rooftop__content__img_1_mobile}
+				/>
+				<img
+					src="/img/rooftop/2_mobile.png"
+					alt="drinks"
+					className={s.rooftop__content__img_2_mobile}
+				/>
+				<img
+					src="/img/rooftop/3_mobile.png"
+					alt="drinks"
+					className={s.rooftop__content__img_3_mobile}
+				/>
+				<img
+					src="/img/rooftop/4_mobile.png"
+					alt="drinks"
+					className={s.rooftop__content__img_4_mobile}
 				/>
 			</section>
 		</main>

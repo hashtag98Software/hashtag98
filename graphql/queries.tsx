@@ -169,16 +169,20 @@ export const rooftopData = gql`
 	query RooftopData($locale: String) {
 		rooftopCollection(limit: 1, locale: $locale) {
 			items {
-				video {
-					url
-				}
 				logoHero {
 					url
 				}
-				logoBlack {
+				videoHero {
 					url
 				}
+				message1
+				video {
+					url
+				}
+				message2
 				buttonText
+				buttonText2
+				message3
 				imagesGalleryCollection {
 					items {
 						url
