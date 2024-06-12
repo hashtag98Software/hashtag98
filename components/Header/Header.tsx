@@ -1,5 +1,6 @@
 'use client'
-import Link from 'next/link'
+import Link from 'components/Link/Link'
+import NextLink from 'next/link'
 import s from './Header.module.scss'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -7,6 +8,7 @@ import {
 	animationOnScreenContainer,
 	menuItemsAnimation,
 } from 'utils/helpers/framerMotionAnimations'
+import { useParams, usePathname } from 'next/navigation'
 
 const Header = () => {
 	const menuItems = [
@@ -14,12 +16,22 @@ const Header = () => {
 		{ label: 'HABITACIONES', link: '/rooms' },
 		{ label: 'AMENA', link: '/restaurant' },
 		{ label: 'INZOLENTE', link: '/rooftop' },
-		{ label: 'EXPERIENCIAS', link: '/' },
-		{ label: 'UBICACIÓN', link: '/' },
+		{ label: 'EXPERIENCIAS', link: '/experiences' },
 		{ label: 'CONTÁCTANOS', link: '/contact' },
 	]
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const pathname = usePathname()
+	const params = useParams<{ lang: string }>()
+	const lang = params.lang
+	const pathnameWithoutLang = pathname
+		.split('/')
+		.filter(p => p !== lang)
+		.join('/')
+
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
+	console.log({ lang, pathnameWithoutLang, pathname })
+	console.log(lang === 'es' ? `/en${pathnameWithoutLang}` : pathnameWithoutLang)
 
 	return (
 		<header className={s.header}>
@@ -80,9 +92,14 @@ const Header = () => {
 						/>
 					</svg>
 				</button>
-				<Link className={s.header__left__lang} href="/" locale="en">
-					ES
-				</Link>
+				<NextLink
+					className={s.header__left__lang}
+					href={
+						lang === 'es' ? `/en${pathnameWithoutLang}` : pathnameWithoutLang
+					}
+				>
+					{lang === 'es' ? 'EN' : 'ES'}
+				</NextLink>
 			</div>
 			<Link className={s.header__logo} href="/" aria-label="Hashtag98 Logo">
 				<img

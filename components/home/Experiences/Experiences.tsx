@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import s from './Experiences.module.scss'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { animationOnScreenContainer } from 'utils/helpers/framerMotionAnimations'
 import { Experience, Maybe } from 'utils/types/graphql/graphql'

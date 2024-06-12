@@ -2,7 +2,7 @@
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import s from './page.module.scss'
-import Link from 'next/link'
+import Link from 'components/Link/Link'
 import { Room } from 'utils/types/graphql/graphql'
 import { IoSearchSharp } from 'react-icons/io5'
 import { useEffect, useRef, useState } from 'react'

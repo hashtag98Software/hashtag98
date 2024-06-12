@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import s from './Booking.module.scss'
-import Link from 'next/link'
+import Link from 'components/Link/Link'
 import {
 	animationOnScreenContainer,
 	menuItemsAnimation,

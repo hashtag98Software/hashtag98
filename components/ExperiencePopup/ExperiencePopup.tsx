@@ -11,7 +11,6 @@ const ExperiencePopup = ({
 	experience: Maybe<Experience>
 	close: () => void
 }) => {
-	console.log(experience)
 	return createPortal(
 		<div className={s.experience_popup}>
 			<div className={s.experience_popup__overlay} onClick={close} />

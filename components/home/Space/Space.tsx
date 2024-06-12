@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'components/Link/Link'
 import s from './Space.module.scss'
 import { motion } from 'framer-motion'
 import {
@@ -24,9 +24,6 @@ const Space = ({ data }: Props) => {
 		isMobile && updatedData.mobileImage?.url
 			? updatedData.mobileImage?.url
 			: updatedData.image?.url
-
-	console.log({ isMobile })
-	console.log(updatedData.mobileImage?.url)
 
 	return (
 		<section className={s.space}>

@@ -6,7 +6,7 @@ import {
 	animationOnScreenContainer,
 	buttonAnimation,
 } from 'utils/helpers/framerMotionAnimations'
-import Link from 'next/link'
+import Link from 'components/Link/Link'
 import { Rooms } from 'utils/types/graphql/graphql'
 import { useMediaQuery } from 'usehooks-ts'
 import { mobile } from 'utils/helpers/mediaQueries'
