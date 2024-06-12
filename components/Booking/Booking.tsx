@@ -15,12 +15,11 @@ import './Booking.scss'
 
 const Booking = () => {
 	const menuItems = [
-		{ label: 'HOTEL', link: '/' },
+		{ label: 'INICIO', link: '/' },
 		{ label: 'HABITACIONES', link: '/rooms' },
 		{ label: 'AMENA', link: '/restaurant' },
 		{ label: 'INZOLENTE', link: '/rooftop' },
-		{ label: 'EXPERIENCIAS', link: '/' },
-		{ label: 'UBICACIÓN', link: '/' },
+		{ label: 'EXPERIENCIAS', link: '/experiences' },
 		{ label: 'CONTÁCTANOS', link: '/contact' },
 	]
 	const [isOpen, setIsOpen] = useState(false)
