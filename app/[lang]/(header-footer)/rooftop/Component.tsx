@@ -16,7 +16,7 @@ const KameronFont = Kameron({ subsets: ['latin'], weight: '600' })
 
 const Component = ({ data }: { data: Rooftop }) => {
 	return (
-		<main>
+		<main id="rooftop">
 			<section className={s.rooftop__hero}>
 				{data.logoHero?.url && (
 					<img
