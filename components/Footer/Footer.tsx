@@ -20,7 +20,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className={s.section_footer__footer__content__nav__list__item}
-									href="/"
+									href="/rooms"
 								>
 									Habitaciones
 								</Link>
@@ -28,7 +28,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className={s.section_footer__footer__content__nav__list__item}
-									href="/"
+									href="/experiences"
 								>
 									Experiencias
 								</Link>
@@ -36,7 +36,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className={s.section_footer__footer__content__nav__list__item}
-									href="/"
+									href="/contact"
 								>
 									Contáctanos
 								</Link>
@@ -44,7 +44,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className={s.section_footer__footer__content__nav__list__item}
-									href="/"
+									href="/code-of-conduct"
 								>
 									Póliticas de uso
 								</Link>
@@ -52,7 +52,7 @@ const Footer = () => {
 							<li>
 								<Link
 									className={s.section_footer__footer__content__nav__list__item}
-									href="/"
+									href="/privacy"
 								>
 									Políticas de privacidad
 								</Link>
