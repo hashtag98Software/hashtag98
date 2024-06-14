@@ -28,20 +28,32 @@ export async function POST(request: NextRequest) {
 			if (roomID) {
 				const roomPath = `/rooms/${roomID}`
 				revalidatePath(roomPath)
-				return NextResponse.json({ revalidated: true, now: Date.now() })
+				return NextResponse.json({
+					revalidated: true,
+					now: Date.now(),
+					path: roomPath,
+				})
 			}
 		}
 
 		const isPage = pageIDs.find(pageID => pageID.id === itemID)
 		if (isPage) {
 			revalidatePath(isPage.path)
-			return NextResponse.json({ revalidated: true, now: Date.now() })
+			return NextResponse.json({
+				revalidated: true,
+				now: Date.now(),
+				path: isPage.path,
+			})
 		}
 
 		const isElement = elementsIDs.find(elementID => elementID === itemID)
 		if (isElement) {
 			revalidateTag(isElement)
-			return NextResponse.json({ revalidated: true, now: Date.now() })
+			return NextResponse.json({
+				revalidated: true,
+				now: Date.now(),
+				tag: isElement,
+			})
 		}
 	}
 
