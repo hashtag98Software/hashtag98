@@ -6,6 +6,7 @@ export async function POST(request: NextRequest) {
 	const secret = requestHeaders.get('x-reval-key')
 	const data = await request.json()
 	const itemID = data?.sys?.contentType?.sys?.id
+	const locales = ['es', 'en']
 	const pageIDs = [
 		{ id: 'home', path: '/' },
 		{ id: 'contact', path: '/contact' },
@@ -27,7 +28,7 @@ export async function POST(request: NextRequest) {
 			const roomID = data?.fields?.slug?.es
 			if (roomID) {
 				const roomPath = `/rooms/${roomID}`
-				revalidatePath(roomPath)
+				locales.forEach(locale => revalidatePath(`${locale}${roomPath}`))
 				return NextResponse.json({
 					revalidated: true,
 					now: Date.now(),
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest) {
 
 		const isPage = pageIDs.find(pageID => pageID.id === itemID)
 		if (isPage) {
-			revalidatePath(isPage.path)
+			locales.forEach(locale => revalidatePath(`${locale}${isPage.path}`))
 			return NextResponse.json({
 				revalidated: true,
 				now: Date.now(),
