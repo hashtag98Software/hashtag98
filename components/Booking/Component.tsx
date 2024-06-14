@@ -122,6 +122,7 @@ const Booking = ({ data }: { data?: Menu }) => {
 					target="_blank"
 					rel="noopener noreferrer"
 					className={s.booking__form__button}
+					aria-label="Go to booking page"
 				>
 					GO
 				</a>

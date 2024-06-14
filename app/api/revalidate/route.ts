@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 		{ id: 'rooftop', path: '/rooftop' },
 		{ id: 'experiences', path: '/experiences' },
 	]
-	const elementsIDs = ['menu']
+	const elementsIDs = ['menu', 'footer', 'header']
 
 	if (secret !== process.env.CONTENTFUL_REVALIDATE_SECRET) {
 		return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 		if (isRoom) {
 			const roomID = data?.fields?.slug?.es
 			if (roomID) {
-				const roomPath = `/room/${roomID}`
+				const roomPath = `/rooms/${roomID}`
 				revalidatePath(roomPath)
 				return NextResponse.json({ revalidated: true, now: Date.now() })
 			}
