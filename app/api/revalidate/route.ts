@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
 	const requestHeaders = new Headers(request.headers)
 	const secret = requestHeaders.get('x-reval-key')
 	const data = await request.json()
-	const itemID = data?.contentType?.sys?.id
+	const itemID = data?.sys?.contentType?.sys?.id
 	const pageIDs = [
 		{ id: 'home', path: '/' },
 		{ id: 'contact', path: '/contact' },
