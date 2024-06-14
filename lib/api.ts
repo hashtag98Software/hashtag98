@@ -2,6 +2,8 @@ import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import {
 	contactData,
 	experiencesData,
+	footerData,
+	headerData,
 	homeData,
 	legalData,
 	menuData,
@@ -15,6 +17,8 @@ import { getGqlString } from 'utils/helpers/getGqlString'
 import {
 	Contact,
 	ExperiencesPage,
+	Footer,
+	Header,
 	Home,
 	LegalDataQuery,
 	Menu,
@@ -153,4 +157,26 @@ export const getMenuData = async ({ preview, locale }: GetData) => {
 	})
 
 	return response.data.menuCollection.items[0] as Menu
+}
+
+export const getHeaderData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: headerData,
+		preview,
+		variables: { locale },
+		next: { tags: ['header'] },
+	})
+
+	return response.data.headerCollection.items[0] as Header
+}
+
+export const getFooterData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: footerData,
+		preview,
+		variables: { locale },
+		next: { tags: ['footer'] },
+	})
+
+	return response.data.footerCollection.items[0] as Footer
 }

@@ -314,3 +314,72 @@ export const menuData = gql`
 		}
 	}
 `
+
+export const headerData = gql`
+	query HeaderData($locale: String) {
+		headerCollection(limit: 1, locale: $locale) {
+			items {
+				menu {
+					name
+					linksCollection {
+						items {
+							text
+							href
+						}
+					}
+				}
+				logo {
+					url
+				}
+				linksCollection {
+					items {
+						text
+						href
+					}
+				}
+				callToAction {
+					text
+					href
+				}
+			}
+		}
+	}
+`
+
+export const footerData = gql`
+	query FooterData($locale: String) {
+		footerCollection(limit: 1, locale: $locale) {
+			items {
+				image {
+					url
+				}
+				linksCollection {
+					items {
+						text
+						href
+					}
+				}
+				address {
+					text
+					href
+				}
+				email {
+					text
+					href
+				}
+				listCollection {
+					items {
+						text
+						href
+					}
+				}
+				text {
+					json
+				}
+				logo {
+					url
+				}
+			}
+		}
+	}
+`

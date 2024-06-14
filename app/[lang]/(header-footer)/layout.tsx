@@ -3,14 +3,16 @@ import Header from 'components/Header/Header'
 
 const Layout = ({
 	children,
+	params,
 }: Readonly<{
 	children: React.ReactNode
+	params: { lang: string }
 }>) => {
 	return (
 		<>
-			<Header />
+			<Header lang={params.lang} />
 			{children}
-			<Footer />
+			<Footer lang={params.lang} />
 		</>
 	)
 }

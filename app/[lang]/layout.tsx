@@ -34,7 +34,7 @@ export default function RootLayout({
 					enableInspectorMode={isEnabled}
 					enableLiveUpdates={isEnabled}
 				>
-					<Header />
+					<Header lang={params.lang} />
 					{children}
 				</ContentfulPreviewProvider>
 				<div id="experience-popup" />

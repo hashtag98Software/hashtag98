@@ -12,10 +12,13 @@ import Experiences, {
 	ExperienceSection,
 } from 'components/home/Experiences/Experiences'
 import { Home } from 'utils/types/graphql/graphql'
-import Footer from 'components/Footer/Footer'
-import { PropsWithChildren, useState } from 'react'
+import { PropsWithChildren, ReactNode, useState } from 'react'
 
-const Component = ({ data, children }: PropsWithChildren<{ data: Home }>) => {
+const Component = ({
+	data,
+	children,
+	footer,
+}: PropsWithChildren<{ data: Home; footer: ReactNode }>) => {
 	const [hiddenBooking, setHiddenBooking] = useState(false)
 	const { spacesCollection } = data
 
@@ -59,7 +62,7 @@ const Component = ({ data, children }: PropsWithChildren<{ data: Home }>) => {
 						</div>
 					)}
 				<Map className={s.home__map} />
-				<Footer />
+				{footer}
 			</div>
 			<div className={s.home__desktop}>
 				<Swiper
@@ -107,9 +110,7 @@ const Component = ({ data, children }: PropsWithChildren<{ data: Home }>) => {
 					<SwiperSlide>
 						<Map className={s.home__map} />
 					</SwiperSlide>
-					<SwiperSlide>
-						<Footer />
-					</SwiperSlide>
+					<SwiperSlide>{footer}</SwiperSlide>
 				</Swiper>
 			</div>
 		</main>
