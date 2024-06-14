@@ -4,6 +4,7 @@ import {
 	experiencesData,
 	homeData,
 	legalData,
+	menuData,
 	restaurantData,
 	rooftopData,
 	roomData,
@@ -16,6 +17,7 @@ import {
 	ExperiencesPage,
 	Home,
 	LegalDataQuery,
+	Menu,
 	Restaurant,
 	Rooftop,
 	Room,
@@ -140,4 +142,15 @@ export const getExperiencesData = async ({ preview, locale }: GetData) => {
 	})
 
 	return response.data.experiencesPageCollection.items[0] as ExperiencesPage
+}
+
+export const getMenuData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: menuData,
+		preview,
+		variables: { locale },
+		next: { tags: ['menu'] },
+	})
+
+	return response.data.menuCollection.items[0] as Menu
 }

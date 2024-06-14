@@ -11,19 +11,18 @@ import RoomTypes from 'components/RoomTypes/RoomTypes'
 import Experiences, {
 	ExperienceSection,
 } from 'components/home/Experiences/Experiences'
-import Booking from 'components/Booking/Booking'
 import { Home } from 'utils/types/graphql/graphql'
 import Footer from 'components/Footer/Footer'
-import { useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 
-const Component = ({ data }: { data: Home }) => {
+const Component = ({ data, children }: PropsWithChildren<{ data: Home }>) => {
 	const [hiddenBooking, setHiddenBooking] = useState(false)
 	const { spacesCollection } = data
 
 	return (
 		<main className={s.home}>
 			<div className={`${s.home__booking} ${hiddenBooking && s.hidden}`}>
-				<Booking />
+				{children}
 			</div>
 			<div className={s.home__mobile}>
 				<Hero video={data?.video?.url} />

@@ -298,3 +298,19 @@ export const experiencesData = gql`
 		}
 	}
 `
+
+export const menuData = gql`
+	query MenuData($locale: String) {
+		menuCollection(limit: 1, locale: $locale) {
+			items {
+				name
+				linksCollection {
+					items {
+						text
+						href
+					}
+				}
+			}
+		}
+	}
+`

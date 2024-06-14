@@ -5,11 +5,10 @@ import s from './page.module.scss'
 import Link from 'components/Link/Link'
 import { Room } from 'utils/types/graphql/graphql'
 import { IoSearchSharp } from 'react-icons/io5'
-import { useEffect, useRef, useState } from 'react'
-import Booking from 'components/Booking/Booking'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 
-const Component = ({ data }: { data: Room }) => {
+const Component = ({ data, children }: PropsWithChildren<{ data: Room }>) => {
 	const ref = useRef(null)
 	const isInView = useInView(ref)
 	const [isOpenAttributes, setIsOpenAttributes] = useState(false)
@@ -32,9 +31,7 @@ const Component = ({ data }: { data: Room }) => {
 
 	return (
 		<main>
-			<div className={s.room__booking}>
-				<Booking />
-			</div>
+			<div className={s.room__booking}>{children}</div>
 			<section className={s.room__hero} ref={ref}>
 				<div className={s.room__hero__content}>
 					<h1 className={s.room__hero__content__title}>

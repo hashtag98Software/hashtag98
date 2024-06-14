@@ -17,7 +17,7 @@ const Rooms = async ({ params: { lang } }: GlobalParams) => {
 	return (
 		<main>
 			<div className={s.rooms__booking}>
-				<Booking />
+				<Booking lang={lang} />
 			</div>
 			<RoomTypes data={data} />
 		</main>

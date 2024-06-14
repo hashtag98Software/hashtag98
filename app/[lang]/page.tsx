@@ -4,6 +4,7 @@ import Component from './Component'
 import { getHomeData } from 'lib/api'
 import { draftMode } from 'next/headers'
 import type { GlobalParams } from 'utils/types/GlobalParams'
+import Booking from 'components/Booking/Booking'
 
 const Home = async ({ params: { lang } }: GlobalParams) => {
 	const { isEnabled } = draftMode()
@@ -13,7 +14,11 @@ const Home = async ({ params: { lang } }: GlobalParams) => {
 		notFound()
 	}
 
-	return <Component data={data} />
+	return (
+		<Component data={data}>
+			<Booking lang={lang} />
+		</Component>
+	)
 }
 
 export default Home

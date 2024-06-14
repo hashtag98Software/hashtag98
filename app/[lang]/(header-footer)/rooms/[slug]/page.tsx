@@ -2,6 +2,7 @@ import { getRoomData, getRoomsSlugs } from 'lib/api'
 import Component from './Component'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+import Booking from 'components/Booking/Booking'
 
 export async function generateStaticParams() {
 	const slugs = await getRoomsSlugs()
@@ -21,7 +22,11 @@ const RoomType = async ({ params: { lang, slug } }: Props) => {
 		notFound()
 	}
 
-	return <Component data={data} />
+	return (
+		<Component data={data}>
+			<Booking lang={lang} />
+		</Component>
+	)
 }
 
 export default RoomType
