@@ -28,22 +28,26 @@ export async function POST(request: NextRequest) {
 			const roomID = data?.fields?.slug?.es
 			if (roomID) {
 				const roomPath = `/rooms/${roomID}`
-				locales.forEach(locale => revalidatePath(`${locale}${roomPath}`))
+				const pathsToRevalidate = locales.map(locale => `/${locale}${roomPath}`)
+				pathsToRevalidate.forEach(locale => revalidatePath(locale))
 				return NextResponse.json({
 					revalidated: true,
 					now: Date.now(),
-					path: roomPath,
+					paths: pathsToRevalidate,
 				})
 			}
 		}
 
 		const isPage = pageIDs.find(pageID => pageID.id === itemID)
 		if (isPage) {
-			locales.forEach(locale => revalidatePath(`${locale}${isPage.path}`))
+			const pathsToRevalidate = locales.map(
+				locale => `/${locale}${isPage.path}`
+			)
+			pathsToRevalidate.forEach(locale => revalidatePath(locale))
 			return NextResponse.json({
 				revalidated: true,
 				now: Date.now(),
-				path: isPage.path,
+				paths: pathsToRevalidate,
 			})
 		}
 
