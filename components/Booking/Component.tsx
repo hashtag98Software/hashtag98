@@ -16,7 +16,7 @@ import { Menu } from 'utils/types/graphql/graphql'
 
 const Booking = ({ data }: { data?: Menu }) => {
 	const [isOpen, setIsOpen] = useState(false)
-	type DateState = Date | null
+	type DateState = Date | undefined
 	const initialDate = new Date()
 	const formatString = 'yyyy-MM-dd'
 	const [startDate, setStartDate] = useState<DateState>(initialDate)
@@ -79,7 +79,7 @@ const Booking = ({ data }: { data?: Menu }) => {
 					<DatePicker
 						selected={startDate}
 						onChange={date => {
-							setStartDate(date)
+							setStartDate(date || undefined)
 							setCurrentInputSelected('end')
 							if (date && endDate && isAfter(date, endDate)) {
 								setEndDate(addDays(date, 1))
@@ -102,7 +102,7 @@ const Booking = ({ data }: { data?: Menu }) => {
 					<DatePicker
 						selected={endDate}
 						onChange={date => {
-							setEndDate(date)
+							setEndDate(date || undefined)
 							setCurrentInputSelected(null)
 						}}
 						onFocus={() => setCurrentInputSelected('end')}
