@@ -4,6 +4,7 @@ import './globals.scss'
 import Header from 'components/Header/Header'
 import { ContentfulPreviewProvider } from 'components/contentful/contentful-preview-provider'
 import { draftMode } from 'next/headers'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,6 +39,10 @@ export default function RootLayout({
 					{children}
 				</ContentfulPreviewProvider>
 				<div id="experience-popup" />
+				<Script
+					id="script-infochat"
+					src="https://cdn.asksuite.com/infochat.js?dataConfig=https://control.asksuite.com/api/companies/hashtag-98"
+				/>
 			</body>
 		</html>
 	)

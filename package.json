@@ -12,15 +12,15 @@
 	"dependencies": {
 		"@contentful/live-preview": "^4.2.2",
 		"@contentful/rich-text-react-renderer": "^15.21.2",
-		"@vis.gl/react-google-maps": "^1.0.2",
+		"@vis.gl/react-google-maps": "^1.1.0",
 		"date-fns": "^3.6.0",
-		"framer-motion": "^11.2.10",
+		"framer-motion": "^11.2.11",
 		"graphql-tag": "^2.12.6",
 		"next": "^14.2.4",
 		"react": "^18",
-		"react-datepicker": "^7.0.0",
+		"react-datepicker": "^7.1.0",
 		"react-dom": "^18",
-		"react-hook-form": "^7.51.5",
+		"react-hook-form": "^7.52.0",
 		"react-icons": "^5.2.1",
 		"react-photoswipe-gallery": "^3.0.1",
 		"resend": "^3.3.0",
@@ -30,13 +30,13 @@
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
 		"@graphql-codegen/client-preset": "^4.3.0",
-		"@types/node": "^20.14.2",
+		"@types/node": "^20.14.6",
 		"@types/react": "^18.3.3",
 		"@types/react-datepicker": "^6.2.0",
 		"@types/react-dom": "^18",
 		"eslint": "^8",
 		"eslint-config-next": "^14.2.4",
-		"sass": "^1.77.5",
+		"sass": "^1.77.6",
 		"typescript": "^5"
 	}
 }
