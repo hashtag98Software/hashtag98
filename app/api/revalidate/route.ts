@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 		{ id: 'rooftop', path: '/rooftop' },
 		{ id: 'experiences', path: '/experiences' },
 	]
-	const elementsIDs = ['menu', 'footer', 'header']
+	const elementsIDs = ['menu', 'footer', 'header', 'floatingButtons']
 
 	if (secret !== process.env.CONTENTFUL_REVALIDATE_SECRET) {
 		return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })

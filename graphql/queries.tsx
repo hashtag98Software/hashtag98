@@ -4,10 +4,6 @@ export const homeData = gql`
 	query HomeData($locale: String) {
 		homeCollection(limit: 1, locale: $locale) {
 			items {
-				seo {
-					title
-					description
-				}
 				video {
 					url
 				}
@@ -55,7 +51,6 @@ export const homeData = gql`
 							url
 						}
 						phone
-						address
 					}
 				}
 				experiences2Collection {
@@ -69,7 +64,6 @@ export const homeData = gql`
 							url
 						}
 						phone
-						address
 					}
 				}
 				experiences3Collection {
@@ -83,7 +77,22 @@ export const homeData = gql`
 							url
 						}
 						phone
-						address
+					}
+				}
+			}
+		}
+	}
+`
+
+export const homeSeo = gql`
+	query HomeSeo($locale: String) {
+		homeCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
 					}
 				}
 			}
@@ -149,6 +158,10 @@ export const restaurantData = gql`
 				video2 {
 					url
 				}
+				booking
+				menu {
+					url
+				}
 				button1Text
 				button2Text
 				postImagesCollection {
@@ -160,6 +173,22 @@ export const restaurantData = gql`
 				}
 				text1
 				text2
+			}
+		}
+	}
+`
+
+export const restaurantSeo = gql`
+	query RestaurantSeo($locale: String) {
+		restaurantCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
+					}
+				}
 			}
 		}
 	}
@@ -182,6 +211,10 @@ export const rooftopData = gql`
 				message2
 				buttonText
 				buttonText2
+				booking
+				menu {
+					url
+				}
 				message3
 				imagesGalleryCollection {
 					items {
@@ -199,6 +232,22 @@ export const rooftopData = gql`
 				instagramUrl
 				facebookUsername
 				facebookUrl
+			}
+		}
+	}
+`
+
+export const rooftopSeo = gql`
+	query RooftopSeo($locale: String) {
+		rooftopCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
+					}
+				}
 			}
 		}
 	}
@@ -271,6 +320,22 @@ export const roomsData = gql`
 	}
 `
 
+export const roomsSeo = gql`
+	query RoomsSeo($locale: String) {
+		roomsCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
+					}
+				}
+			}
+		}
+	}
+`
+
 export const experiencesData = gql`
 	query ExperiencesData($locale: String) {
 		experiencesPageCollection(limit: 1, locale: $locale) {
@@ -291,7 +356,22 @@ export const experiencesData = gql`
 						name
 						description
 						phone
-						address
+					}
+				}
+			}
+		}
+	}
+`
+
+export const experiencesSeo = gql`
+	query ExperiencesSeo($locale: String) {
+		experiencesPageCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
 					}
 				}
 			}
@@ -379,6 +459,19 @@ export const footerData = gql`
 				logo {
 					url
 				}
+			}
+		}
+	}
+`
+
+export const floatingButtonsData = gql`
+	query FloatingButtonsData($locale: String) {
+		floatingButtonsCollection(limit: 1, locale: $locale) {
+			items {
+				activeWhatsapp
+				whatsapp
+				activeAsksuite
+				asksuiteScriptSrc
 			}
 		}
 	}

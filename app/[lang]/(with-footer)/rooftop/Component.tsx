@@ -46,22 +46,26 @@ const Component = ({ data }: { data: Rooftop }) => {
 				</p>
 				<div className={s.rooftop__content__info}>
 					<div className={s.rooftop__content__info__buttons}>
-						<a
-							href="https://assets.ctfassets.net/9q4if916fz49/2SqsuzOlp1T44ktmvMOkgY/946d93805858b496d00bafacaa24b4a0/carta_inzolente_actualizada_2.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-							className={s.rooftop__content__info__buttons__item}
-						>
-							{data.buttonText}
-						</a>
-						<a
-							href="https://assets.ctfassets.net/9q4if916fz49/2SqsuzOlp1T44ktmvMOkgY/946d93805858b496d00bafacaa24b4a0/carta_inzolente_actualizada_2.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-							className={s.rooftop__content__info__buttons__item}
-						>
-							{data.buttonText2}
-						</a>
+						{data.booking && (
+							<a
+								href={data.booking}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={s.rooftop__content__info__buttons__item}
+							>
+								{data.buttonText}
+							</a>
+						)}
+						{data.menu?.url && (
+							<a
+								href={data.menu?.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={s.rooftop__content__info__buttons__item}
+							>
+								{data.buttonText2}
+							</a>
+						)}
 					</div>
 					{data.video?.url && (
 						<video
@@ -127,9 +131,11 @@ const Component = ({ data }: { data: Rooftop }) => {
 					<Swiper
 						slidesPerView="auto"
 						spaceBetween={32}
-						centeredSlides={true}
 						initialSlide={2}
 						loop
+						autoplay={{
+							delay: 5000,
+						}}
 						pagination={{
 							clickable: true,
 						}}

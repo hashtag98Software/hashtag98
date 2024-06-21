@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hashtag98.com.co
+
+# Sitemaps
+Sitemap: https://hashtag98.com.co/sitemap.xml

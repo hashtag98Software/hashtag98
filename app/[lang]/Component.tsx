@@ -23,7 +23,7 @@ const Component = ({
 	const { spacesCollection } = data
 
 	return (
-		<main className={s.home}>
+		<main className={s.home} id="home">
 			<div className={`${s.home__booking} ${hiddenBooking && s.hidden}`}>
 				{children}
 			</div>

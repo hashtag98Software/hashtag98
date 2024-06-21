@@ -44,14 +44,6 @@ const ExperiencePopup = ({
 							{experience?.phone}
 						</span>
 					</div>
-					<div className={s.experience_popup__content__contact__item}>
-						<div className={s.experience_popup__content__contact__item__icon}>
-							<MdLocationOn />
-						</div>
-						<span className={s.experience_popup__content__contact__item__text}>
-							{experience?.address}
-						</span>
-					</div>
 				</div>
 			</div>
 		</div>,

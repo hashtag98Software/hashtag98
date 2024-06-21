@@ -2,9 +2,15 @@ import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import {
 	contactData,
 	experiencesData,
+	experiencesSeo,
+	floatingButtonsData,
+	roomsSeo,
+	rooftopSeo,
+	restaurantSeo,
 	footerData,
 	headerData,
 	homeData,
+	homeSeo,
 	legalData,
 	menuData,
 	restaurantData,
@@ -17,6 +23,7 @@ import { getGqlString } from 'utils/helpers/getGqlString'
 import {
 	Contact,
 	ExperiencesPage,
+	FloatingButtons,
 	Footer,
 	Header,
 	Home,
@@ -26,6 +33,7 @@ import {
 	Rooftop,
 	Room,
 	Rooms,
+	Seo,
 } from 'utils/types/graphql/graphql'
 
 async function fetchGraphQL({
@@ -71,6 +79,15 @@ export const getHomeData = async ({ preview, locale }: GetData) => {
 	return response.data.homeCollection.items[0] as Home
 }
 
+export const getHomeSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: homeSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.homeCollection.items[0].seo as Seo
+}
+
 export const getContactData = async ({ preview, locale }: GetData) => {
 	const response = await fetchGraphQL({
 		query: contactData,
@@ -101,6 +118,15 @@ export const getRestaurantData = async ({ preview, locale }: GetData) => {
 	return response.data.restaurantCollection.items[0] as Restaurant
 }
 
+export const getRestaurantSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: restaurantSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.restaurantCollection.items[0].seo as Seo
+}
+
 export const getRooftopData = async ({ preview, locale }: GetData) => {
 	const response = await fetchGraphQL({
 		query: rooftopData,
@@ -108,6 +134,15 @@ export const getRooftopData = async ({ preview, locale }: GetData) => {
 		variables: { locale },
 	})
 	return response.data.rooftopCollection.items[0] as Rooftop
+}
+
+export const getRooftopSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: rooftopSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.rooftopCollection.items[0].seo as Seo
 }
 
 export const getRoomsSlugs = async () => {
@@ -138,6 +173,15 @@ export const getRoomsData = async ({ preview, locale }: GetData) => {
 	return response.data.roomsCollection.items[0] as Rooms
 }
 
+export const getRoomsSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: roomsSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.roomsCollection.items[0].seo as Seo
+}
+
 export const getExperiencesData = async ({ preview, locale }: GetData) => {
 	const response = await fetchGraphQL({
 		query: experiencesData,
@@ -146,6 +190,15 @@ export const getExperiencesData = async ({ preview, locale }: GetData) => {
 	})
 
 	return response.data.experiencesPageCollection.items[0] as ExperiencesPage
+}
+
+export const getExperiencesSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: experiencesSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.experiencesPageCollection.items[0].seo as Seo
 }
 
 export const getMenuData = async ({ preview, locale }: GetData) => {
@@ -179,4 +232,15 @@ export const getFooterData = async ({ preview, locale }: GetData) => {
 	})
 
 	return response.data.footerCollection.items[0] as Footer
+}
+
+export const getFloatingButtonsData = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: floatingButtonsData,
+		preview,
+		variables: { locale },
+		next: { tags: ['floatingButtons'] },
+	})
+
+	return response.data.floatingButtonsCollection.items[0] as FloatingButtons
 }

@@ -30,7 +30,7 @@ const Component = ({ data, children }: PropsWithChildren<{ data: Room }>) => {
 	}, [isInView])
 
 	return (
-		<main>
+		<main id="room">
 			<div className={s.room__booking}>{children}</div>
 			<section className={s.room__hero} ref={ref}>
 				<div className={s.room__hero__content}>

@@ -1,3 +1,5 @@
+@import '../../styles/mixins/responsive';
+
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -32,4 +34,25 @@ button {
 ::-webkit-scrollbar-thumb {
 	background: rgba(255, 255, 255, 1);
 	border-radius: 1rem;
+}
+
+.infochat_custommain,
+#chatbotmobile .infochat_floatmain {
+	z-index: 2 !important;
+}
+
+body:has(#home) .infochat_floatmain,
+body:has(#rooms) .infochat_floatmain,
+body:has(#room) .infochat_floatmain {
+	@include mobile {
+		bottom: 10rem !important;
+	}
+}
+
+body:has(#home) #whatsapp-button,
+body:has(#rooms) #whatsapp-button,
+body:has(#room) #whatsapp-button {
+	@include mobile {
+		bottom: 16rem !important;
+	}
 }

@@ -10,7 +10,6 @@ const Layout = ({
 }>) => {
 	return (
 		<>
-			<Header lang={params.lang} />
 			{children}
 			<Footer lang={params.lang} />
 		</>

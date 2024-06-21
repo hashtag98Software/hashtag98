@@ -95,34 +95,38 @@ const Component = ({ data }: { data: Restaurant }) => {
 						</video>
 					)}
 					<div className={s.restaurant__info__content__buttons}>
-						<a
-							href="https://assets.ctfassets.net/9q4if916fz49/40oUL036YkAtl3kluJiN4C/31d31c7784a7445c16d8313a89c88e72/Carta_Amena_actualizada.pdf"
-							target="_blank"
-							rel="noopener noreferrer"
-							className={s.restaurant__info__content__buttons__item}
-						>
-							<motion.img
-								src="/img/plato1.png"
-								alt="Plato"
-								className={s.restaurant__info__content__buttons__item__img}
-								style={{ rotate, translateY: '-50%' }}
-							/>
-							{data.button1Text}
-						</a>
-						<a
-							href="http://"
-							target="_blank"
-							rel="noopener noreferrer"
-							className={`${s.restaurant__info__content__buttons__item} ${s.two}`}
-						>
-							<motion.img
-								src="/img/plato2.png"
-								alt="Plato"
-								className={s.restaurant__info__content__buttons__item__img}
-								style={{ rotate, translateY: '-50%' }}
-							/>
-							{data.button2Text}
-						</a>
+						{data.menu?.url && (
+							<a
+								href={data.menu?.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={s.restaurant__info__content__buttons__item}
+							>
+								<motion.img
+									src="/img/plato1.png"
+									alt="Plato"
+									className={s.restaurant__info__content__buttons__item__img}
+									style={{ rotate, translateY: '-50%' }}
+								/>
+								{data.button1Text}
+							</a>
+						)}
+						{data.booking && (
+							<a
+								href={data.booking}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={`${s.restaurant__info__content__buttons__item} ${s.two}`}
+							>
+								<motion.img
+									src="/img/plato2.png"
+									alt="Plato"
+									className={s.restaurant__info__content__buttons__item__img}
+									style={{ rotate, translateY: '-50%' }}
+								/>
+								{data.button2Text}
+							</a>
+						)}
 					</div>
 				</div>
 				<h2 className={s.restaurant__info__text1}>{data.text1}</h2>
