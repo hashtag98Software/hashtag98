@@ -3,6 +3,8 @@ import { Experience, ExperiencesPage, Maybe } from 'utils/types/graphql/graphql'
 import s from './page.module.scss'
 import { useState } from 'react'
 import ExperiencePopup from 'components/ExperiencePopup/ExperiencePopup'
+import { animationOnScreenContainer } from 'utils/helpers/framerMotionAnimations'
+import { motion } from 'framer-motion'
 
 const Component = ({ data }: { data: ExperiencesPage }) => {
 	const [currentExperience, setCurrentExperience] =
@@ -34,8 +36,26 @@ const Component = ({ data }: { data: ExperiencesPage }) => {
 					/>
 				)}
 				<ul className={s.experiences__content__list}>
-					{data.experiencesCollection?.items.map(item => (
-						<li key={item?.name} className={s.experiences__content__list__item}>
+					{data.experiencesCollection?.items.map((item, i) => (
+						<motion.li
+							key={item?.name}
+							className={s.experiences__content__list__item}
+							variants={{
+								offscreen: {
+									opacity: 0,
+									scale: 0.8,
+								},
+								onscreen: {
+									opacity: 1,
+									scale: 1,
+									transition: {
+										type: 'spring',
+										duration: 0.2 * (i + 1),
+									},
+								},
+							}}
+							{...animationOnScreenContainer}
+						>
 							<button
 								onClick={() => setCurrentExperience(item)}
 								className={s.experiences__content__list__item__button}
@@ -62,7 +82,7 @@ const Component = ({ data }: { data: ExperiencesPage }) => {
 									</p>
 								</div>
 							</button>
-						</li>
+						</motion.li>
 					))}
 				</ul>
 				<div className={s.experiences__content__text}>
