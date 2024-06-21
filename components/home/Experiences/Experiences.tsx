@@ -6,6 +6,7 @@ import { animationOnScreenContainer } from 'utils/helpers/framerMotionAnimations
 import { Experience, Maybe } from 'utils/types/graphql/graphql'
 import { useState } from 'react'
 import ExperiencePopup from 'components/ExperiencePopup/ExperiencePopup'
+import { useParams } from 'next/navigation'
 
 const Experiences = ({
 	experiences1,
@@ -30,6 +31,8 @@ export const ExperienceSection = ({
 }: {
 	experiences: Maybe<Experience>[]
 }) => {
+	const params = useParams<{ lang: string }>()
+	const lang = params.lang
 	const [currentExperience, setCurrentExperience] =
 		useState<Maybe<Experience>>(null)
 	return (
@@ -91,7 +94,7 @@ export const ExperienceSection = ({
 									onClick={() => setCurrentExperience(experience)}
 									className={s.experiences__swiper__container__content__button}
 								>
-									VER MÁS
+									{lang === 'es' ? 'VER MÁS' : 'SEE MORE'}
 								</button>
 							</motion.div>
 							{experience?.imagePreview?.url && (

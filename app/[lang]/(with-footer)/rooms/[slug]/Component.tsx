@@ -7,8 +7,11 @@ import { Room } from 'utils/types/graphql/graphql'
 import { IoSearchSharp } from 'react-icons/io5'
 import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
+import { useParams } from 'next/navigation'
 
 const Component = ({ data, children }: PropsWithChildren<{ data: Room }>) => {
+	const params = useParams<{ lang: string }>()
+	const lang = params.lang
 	const ref = useRef(null)
 	const isInView = useInView(ref)
 	const [isOpenAttributes, setIsOpenAttributes] = useState(false)
@@ -81,7 +84,7 @@ const Component = ({ data, children }: PropsWithChildren<{ data: Room }>) => {
 								stroke="white"
 							/>
 						</svg>
-						<span>Descripción</span>
+						<span>{lang === 'es' ? 'Descripción' : 'Description'}</span>
 					</button>
 				</div>
 				<div
@@ -173,7 +176,7 @@ const Component = ({ data, children }: PropsWithChildren<{ data: Room }>) => {
 								href={`/rooms/${room?.slug}`}
 								className={s.room__more_types__item__content__button}
 							>
-								VER MÁS
+								{lang === 'es' ? 'VER MÁS' : 'SEE MORE'}
 							</Link>
 						</div>
 						{room?.imagesCollection?.items[0]?.url && (
