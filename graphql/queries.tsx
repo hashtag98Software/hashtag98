@@ -50,7 +50,10 @@ export const homeData = gql`
 						video {
 							url
 						}
-						phone
+						phone {
+							text
+							href
+						}
 					}
 				}
 				experiences2Collection {
@@ -63,7 +66,10 @@ export const homeData = gql`
 						video {
 							url
 						}
-						phone
+						phone {
+							text
+							href
+						}
 					}
 				}
 				experiences3Collection {
@@ -76,7 +82,10 @@ export const homeData = gql`
 						video {
 							url
 						}
-						phone
+						phone {
+							text
+							href
+						}
 					}
 				}
 			}
@@ -355,7 +364,10 @@ export const experiencesData = gql`
 						}
 						name
 						description
-						phone
+						phone {
+							text
+							href
+						}
 					}
 				}
 			}

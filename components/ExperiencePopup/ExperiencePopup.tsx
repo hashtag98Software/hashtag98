@@ -36,14 +36,21 @@ const ExperiencePopup = ({
 					{experience?.description}
 				</p>
 				<div className={s.experience_popup__content__contact}>
-					<div className={s.experience_popup__content__contact__item}>
-						<div className={s.experience_popup__content__contact__item__icon}>
-							<FaPhoneAlt />
-						</div>
-						<span className={s.experience_popup__content__contact__item__text}>
-							{experience?.phone}
-						</span>
-					</div>
+					{experience?.phone?.href && (
+						<a
+							href={experience?.phone?.href}
+							className={s.experience_popup__content__contact__item}
+						>
+							<div className={s.experience_popup__content__contact__item__icon}>
+								<FaPhoneAlt />
+							</div>
+							<span
+								className={s.experience_popup__content__contact__item__text}
+							>
+								{experience?.phone?.text}
+							</span>
+						</a>
+					)}
 				</div>
 			</div>
 		</div>,
