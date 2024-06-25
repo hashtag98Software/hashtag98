@@ -307,6 +307,22 @@ export const roomData = gql`
 	}
 `
 
+export const roomSeo = gql`
+	query RoomSeo($slug: String!, $locale: String) {
+		roomCollection(limit: 1, where: { slug: $slug }, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
+					}
+				}
+			}
+		}
+	}
+`
+
 export const roomsData = gql`
 	query RoomsData($locale: String) {
 		roomsCollection(limit: 1, locale: $locale) {

@@ -18,6 +18,7 @@ import {
 	roomData,
 	roomsData,
 	roomsSlugs,
+	roomSeo,
 } from 'graphql/queries'
 import { getGqlString } from 'utils/helpers/getGqlString'
 import {
@@ -161,6 +162,19 @@ export const getRoomData = async ({
 		variables: { locale, slug },
 	})
 	return response.data.roomCollection.items[0] as Room
+}
+
+export const getRoomSeo = async ({
+	preview,
+	locale,
+	slug,
+}: GetData & { slug: string }) => {
+	const response = await fetchGraphQL({
+		query: roomSeo,
+		preview,
+		variables: { locale, slug },
+	})
+	return response.data.roomCollection.items[0].seo as Seo
 }
 
 export const getRoomsData = async ({ preview, locale }: GetData) => {
