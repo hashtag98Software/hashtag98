@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 	title: 'Hotel - Hashtag98 | El Poblado, Medellín',
 	description:
 		'Hashtag 98 combina ubicación, diseño interior a la vanguardia y la distribución ideal para brindar una estadía única en el Poblado, Medellín.',
-	robots: 'noindex, nofollow', // TODO: Remove for production
 	openGraph: {
 		siteName: 'Hashtag98',
 		type: 'website',
