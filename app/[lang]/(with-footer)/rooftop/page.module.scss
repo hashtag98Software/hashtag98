@@ -9,6 +9,7 @@
 		align-items: center;
 		position: relative;
 		&__logo {
+			width: 350px;
 			@include mobile {
 				width: 225px;
 			}

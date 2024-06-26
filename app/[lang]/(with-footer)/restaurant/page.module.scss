@@ -9,6 +9,7 @@
 		align-items: center;
 		position: relative;
 		&__img {
+			max-width: 350px;
 			@include mobile {
 				width: 129px;
 			}
