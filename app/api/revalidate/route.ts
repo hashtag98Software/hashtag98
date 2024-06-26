@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
+import { getRoomsSlugs } from 'lib/api'
 
 export async function POST(request: NextRequest) {
 	const requestHeaders = new Headers(request.headers)
@@ -21,21 +22,31 @@ export async function POST(request: NextRequest) {
 		return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
 	}
 
+	const getAllRoomsPaths = async () => {
+		const rooms = await getRoomsSlugs()
+		const roomsPaths = rooms
+			.map(({ slug }) => locales.map(locale => `/${locale}/${slug}`))
+			.flat()
+		return roomsPaths
+	}
+
 	if (itemID) {
 		const isRoom = itemID === 'room'
 
 		if (isRoom) {
-			const roomID = data?.fields?.slug?.es
-			if (roomID) {
-				const roomPath = `/rooms/${roomID}`
-				const pathsToRevalidate = locales.map(locale => `/${locale}${roomPath}`)
-				pathsToRevalidate.forEach(locale => revalidatePath(locale))
-				return NextResponse.json({
-					revalidated: true,
-					now: Date.now(),
-					paths: pathsToRevalidate,
-				})
-			}
+			const allRooms = await getAllRoomsPaths()
+			const relatedPathsToRevalidate = ['/', '/rooms']
+				.map(path => locales.map(locale => `/${locale}${path}`))
+				.flat()
+			const allPathsToRevalidate = [...relatedPathsToRevalidate, ...allRooms]
+
+			allPathsToRevalidate.forEach(locale => revalidatePath(locale))
+
+			return NextResponse.json({
+				revalidated: true,
+				now: Date.now(),
+				paths: allPathsToRevalidate,
+			})
 		}
 
 		const isPage = pageIDs.find(pageID => pageID.id === itemID)
@@ -62,5 +73,19 @@ export async function POST(request: NextRequest) {
 		}
 	}
 
-	return NextResponse.json({ processed: true, now: Date.now() })
+	const rooms = await getAllRoomsPaths()
+	const pathsToRevalidate = pageIDs
+		.map(page => locales.map(locale => `/${locale}${page.path}`))
+		.flat()
+	const pathsToRevalidateWithRooms = [...pathsToRevalidate, ...rooms]
+
+	pathsToRevalidateWithRooms.forEach(path => revalidatePath(path))
+	elementsIDs.forEach(tag => revalidateTag(tag))
+
+	return NextResponse.json({
+		revalidated: true,
+		now: Date.now(),
+		paths: pathsToRevalidateWithRooms,
+		tags: elementsIDs,
+	})
 }
