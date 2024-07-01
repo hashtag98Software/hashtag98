@@ -8,7 +8,7 @@
 		left: 50%;
 		bottom: 95px;
 		transform: translateX(-50%);
-		z-index: 2;
+		z-index: 3;
 		@include mobile {
 			bottom: 50px;
 		}

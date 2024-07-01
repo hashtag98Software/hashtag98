@@ -9,7 +9,7 @@
 		position: fixed;
 		left: 84px;
 		bottom: 133px;
-		z-index: 2;
+		z-index: 3;
 		@include mobile {
 			left: 50%;
 			transform: translateX(-50%);
