@@ -151,6 +151,11 @@
 					font-style: normal;
 					font-weight: 700;
 					line-height: normal;
+					cursor: pointer;
+					&:disabled {
+						background: #969696;
+						cursor: not-allowed;
+					}
 				}
 			}
 		}

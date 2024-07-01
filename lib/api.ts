@@ -19,6 +19,7 @@ import {
 	roomsData,
 	roomsSlugs,
 	roomSeo,
+	contactSeo,
 } from 'graphql/queries'
 import { getGqlString } from 'utils/helpers/getGqlString'
 import {
@@ -96,6 +97,15 @@ export const getContactData = async ({ preview, locale }: GetData) => {
 		variables: { locale },
 	})
 	return response.data.contactCollection.items[0] as Contact
+}
+
+export const getContactSeo = async ({ preview, locale }: GetData) => {
+	const response = await fetchGraphQL({
+		query: contactSeo,
+		preview,
+		variables: { locale },
+	})
+	return response.data.contactCollection.items[0].seo as Seo
 }
 
 interface GetLegalData extends GetData {

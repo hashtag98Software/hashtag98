@@ -116,14 +116,46 @@ export const contactData = gql`
 	query ContactData($locale: String) {
 		contactCollection(limit: 1, locale: $locale) {
 			items {
-				seo {
-					title
-					description
-				}
+				title
 				image {
 					url
 				}
+				address {
+					text
+					href
+				}
+				guestServicesPhone {
+					text
+					href
+				}
+				marketingAndSalesPhone {
+					text
+					href
+				}
+				frontDeskManagerPhone {
+					text
+					href
+				}
+				phoneMobile {
+					text
+					href
+				}
 				email
+			}
+		}
+	}
+`
+export const contactSeo = gql`
+	query ContactSeo($locale: String) {
+		contactCollection(limit: 1, locale: $locale) {
+			items {
+				seo {
+					title
+					description
+					openGraphImage {
+						url
+					}
+				}
 			}
 		}
 	}

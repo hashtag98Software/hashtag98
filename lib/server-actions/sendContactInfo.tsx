@@ -15,7 +15,7 @@ export const sendContactInfo = async ({
 	to: string
 }) => {
 	const { error } = await resend.emails.send({
-		from: 'Hashtag98 <onboarding@resend.dev>',
+		from: 'Formulario de Contacto <formulario@hashtag98.com.co>',
 		to: [to],
 		subject: 'Nueva información de contacto recibida',
 		react: (
