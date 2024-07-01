@@ -7,6 +7,9 @@ export const homeData = gql`
 				video {
 					url
 				}
+				videoMobile {
+					url
+				}
 				rooms {
 					button
 					roomsCollection {

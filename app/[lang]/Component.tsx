@@ -28,7 +28,7 @@ const Component = ({
 				{children}
 			</div>
 			<div className={s.home__mobile}>
-				<Hero video={data?.video?.url} />
+				<Hero video={data?.video?.url} videoMobile={data?.videoMobile?.url} />
 				{data.rooms && <RoomTypes data={data.rooms} />}
 				<Swiper
 					id="home-slider-mobile"
@@ -81,7 +81,10 @@ const Component = ({
 					}
 				>
 					<SwiperSlide>
-						<Hero video={data?.video?.url} />
+						<Hero
+							video={data?.video?.url}
+							videoMobile={data?.videoMobile?.url}
+						/>
 					</SwiperSlide>
 					{data.rooms && (
 						<SwiperSlide>
