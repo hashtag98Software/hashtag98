@@ -69,7 +69,10 @@ const Component = ({
 					id="home-slider"
 					direction={'vertical'}
 					slidesPerView={1}
-					mousewheel={true}
+					mousewheel={{
+						forceToAxis: true,
+						thresholdDelta: 120,
+					}}
 					pagination={{
 						clickable: true,
 					}}
